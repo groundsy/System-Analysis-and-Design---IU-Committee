@@ -1,0 +1,88 @@
+﻿@model TeamBananaPhase4.Models.Discussion
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Discussion</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DiscItem_Meeting_Comm_ID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DiscItem_Meeting_Comm_ID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DiscItem.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DiscItem.Description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DiscItem_Meeting_DateTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DiscItem_Meeting_DateTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DiscItem_Title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DiscItem_Title)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SysUser.FirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SysUser.FirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ActionDateTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ActionDateTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Comment)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Comment)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.HasRead)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HasRead)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.HasVoted)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HasVoted)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Vote)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Vote)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

@@ -1,0 +1,132 @@
+﻿﻿@model TeamBananaPhase4.Models.DiscItem
+
+@{ ViewBag.Title = "Create discussion item for the meeting on " + ViewBag.MeetingTime; }
+
+<section id="createDiscItem">
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(model => model.Meeting_Comm_CommOwn_ID)
+    @Html.HiddenFor(model => model.Meeting_Comm_ID)
+    @Html.HiddenFor(model => model.Meeting_DateTime)
+    @Html.HiddenFor(model => model.CreatedBy)
+    @Html.HiddenFor(model => model.IsArchived)
+       
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="editor-field">
+                @Html.LabelFor(model => model.Title, "Title")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Title)
+                @Html.ValidationMessageFor(model => model.Title)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Description, "Description")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.DueDate, "Due Date")
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.DueDate, new { @class = "datepicker" })
+                @Html.ValidationMessageFor(model => model.DueDate)
+            </div>
+        </div>
+    </div>
+    
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.IsVoted, "Votable")
+            </div>
+            <div class="editor-field">
+                @Html.RadioButtonFor(model => model.IsVoted, "N") No
+                @Html.RadioButtonFor(model => model.IsVoted, "Y") Yes
+            </div>
+        </div>
+        <div class="span3">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.IsAnonVoting, "Anonymous Voting")
+            </div>
+            <div class="editor-field">
+                @Html.RadioButtonFor(model => model.IsAnonVoting, "N") No
+                @Html.RadioButtonFor(model => model.IsAnonVoting, "Y") Yes
+            </div>
+        </div>
+        <div class="span3">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.IsRead, "Readable")
+            </div>
+            <div class="editor-field">
+                @Html.RadioButtonFor(model => model.IsRead, "N") No
+                @Html.RadioButtonFor(model => model.IsRead, "Y") Yes
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div id="votebox">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.VoteType, "Vote Types")
+            </div>
+            <div>
+                @foreach (var type in (IEnumerable<SelectListItem>)ViewData["voteTypes"])
+                 {
+                        <label><input type="checkbox" name="voteTypes" value="@type.Value" />@type.Value</label>
+                 }
+                @Html.ValidationMessageFor(model => model.VoteType)
+            </div>
+        </div>
+    </div>
+    
+    <div class="row-fluid">
+        <div class="span12">
+            <div>
+                @Html.Label("File to upload: ")
+                <input id="myFile" type="file" name="myFile" runat="server" />
+                @Html.ValidationMessage("FileImage")
+            </div>
+            <div>
+                @Html.Label("File Tags")
+            </div>
+            <div>
+                @Html.Editor("Tags")
+            </div>
+            <div>
+                <span>
+                <input type="submit" value="Create Discussion Item" class="btn btn-primary"/>
+            </span>
+              <span>
+                    @Html.ActionLink("Cancel", "Details", "Meetings", new
+               {
+                   primaryKey1 = Model.Meeting_Comm_CommOwn_ID,
+                   primaryKey2 = Model.Meeting_Comm_ID,
+                   primaryKey3 = Model.Meeting_DateTime.ToString("MM-dd-yyyy h.mm.ss t\\M")
+               }, new
+               {
+                   @class = "btn btn-danger" 
+               })
+                </span>
+             </div>
+         </div>
+    </div>
+           @* <div class="span3">
+                <br />
+                <font size="2" color="red">
+                        **NOTE**  Votable, anonymous voting, and vote types CANNOT
+                        be changed once a discussion item is created.
+                </font>
+            </div>*@
+   
+ 
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

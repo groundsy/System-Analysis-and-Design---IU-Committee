@@ -1,0 +1,62 @@
+﻿@model TeamBananaPhase4.Models.Discussion
+
+@{
+    ViewBag.Title = "Add Vote to the " + ViewBag.DiscItem_Meeting_Title + " discussion item";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(model => model.DiscItem_Meeting_Comm_CommOwn_ID)
+    @Html.HiddenFor(model => model.DiscItem_Meeting_Comm_ID)
+    @Html.HiddenFor(model => model.DiscItem_Meeting_DateTime)
+    @Html.HiddenFor(model => model.DiscItem_Title)
+    @Html.HiddenFor(model => model.SysUser_Email)
+    @Html.HiddenFor(model => model.ActionDateTime)
+    @Html.HiddenFor(model => model.HasRead)
+    @Html.HiddenFor(model => model.HasVoted)
+
+    <div class="row-fluid">
+        <div class="span4">
+
+             @if (Model.HasVoted != "Y")
+             {
+                <div class="editor-label">
+                @Html.LabelFor(model => model.Vote)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Vote)
+                @Html.ValidationMessageFor(model => model.Vote)
+            </div>
+            
+                 <p>
+                    <input type="submit" value="Add Vote" />
+                </p>
+             }
+            else
+            {
+               <div>
+               <b>You already voted on this discussion item</b>
+               </div>
+            }
+            
+            </div>
+            </div>
+}
+
+<div>
+    @Html.ActionLink("Back to Details", "Details", "DiscItem", new
+{
+    primaryKey1 = Model.DiscItem_Meeting_Comm_CommOwn_ID,
+    primaryKey2 = Model.DiscItem_Meeting_Comm_ID,
+    primaryKey3 = Model.DiscItem_Meeting_DateTime.ToString("MM-dd-yyyy"),
+    primaryKey4 = HttpUtility.UrlPathEncode(Model.DiscItem_Title)
+}, null)
+                   
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

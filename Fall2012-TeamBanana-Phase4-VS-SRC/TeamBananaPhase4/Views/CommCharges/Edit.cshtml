@@ -1,0 +1,53 @@
+﻿@************************************************
+ * Team: Team Banana
+ * Programmers: Justin Ashdown, Eric Grounds, Joel Haubold, Jared Short, Dung Truong
+ * 
+ * File: views\commCharges\edit.cshtml
+ * Created by: Joel Haubold
+ * Created date: 12-7-12
+ * Primary Programmer: Joel Haubold
+ * File description: View for editing committee charges
+ *
+ * Change Log:
+ * Date programmer change
+ *
+ *
+ *************************************************@
+ @model TeamBananaPhase4.Models.CommCharge
+@{
+    ViewBag.Title = "Edit Charges for " + Model.Comm.Name;
+}
+<section>
+    <div class="row-fluid">
+        <div class="span12">
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+
+                <fieldset>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.EffectiveDate)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.EffectiveDate, new { @class = "datepicker" } )
+                        @Html.ValidationMessageFor(model => model.EffectiveDate)
+                    </div>
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Charges)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.Charges, new { @class = "input-xxlarge", @rows = "8" })
+                        @Html.ValidationMessageFor(model => model.Charges)
+                    </div>
+                    <p>
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                        @Html.ActionLink("Cancel", "details", "committees", new { primaryKey1 = Model.Comm_CommOwn_ID, primaryKey2 = Model.Comm_ID }, new { @class = "btn" })
+                    </p>
+                </fieldset>
+            }
+        </div>
+    </div>
+</section>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

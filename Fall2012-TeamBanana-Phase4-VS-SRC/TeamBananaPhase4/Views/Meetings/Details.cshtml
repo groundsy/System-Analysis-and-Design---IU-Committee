@@ -1,0 +1,163 @@
+﻿@************************************************
+ * Team: Team Banana
+ * Programmers: Justin Ashdown, Eric Grounds, Joel Haubold, Jared Short, Dung Truong
+ * 
+ * File: Views/Meetings/Details.cshtml
+ * Created by: Joel Haubold
+ * Created date: 11-23-12
+ * Primary Programmer: Joel Haubold
+ * File description: View for meeting details. Includes list of Discussion items
+ *
+ * Change Log:
+ * Date programmer change
+ * 11-27-12 Joel    Made pretty
+ *
+ *************************************************@
+@model TeamBananaPhase4.Models.Meeting
+
+@**** Set title ****@
+@{ ViewBag.Title = "Details for " + Model.Comm.Name + " meeting on " + Model.DateTime.ToString("d"); }
+
+@**** Display meeting information ****@
+<section id="MeetingDetails">
+<div class="row-fluid">
+    <div class="span6">
+        <div>
+            <span class="display-label">
+                 @Html.DisplayNameFor(model => model.DateTime):
+            </span>
+            <span class="display-field">
+                @Html.DisplayFor(model => model.DateTime)
+            </span>
+        </div>
+        <div>
+            <span class="display-label">
+                 @Html.DisplayNameFor(model => model.Location):
+            </span>
+            <span class="display-field">
+                @Html.DisplayFor(model => model.Location)
+            </span>
+        </div>
+    </div>
+    <div class="span6">
+        <div>
+            <span class="display-label">
+                 @Html.DisplayNameFor(model => model.CreatedBy):
+            </span>
+            <span class="display-field">
+                @Html.DisplayFor(model => model.CreatedBy)
+            </span>
+        </div>
+        <div>
+            <span class="display-label">
+                 @Html.DisplayNameFor(model => model.CreatedDate):
+            </span>
+            <span class="display-field">
+                @Html.DisplayFor(model => model.CreatedDate)
+            </span>
+        </div>
+    </div>
+    </div>
+    <div class="row-fluid">
+    <div class="span12">
+        <div>
+            <span class="display-label">
+                 @Html.DisplayNameFor(model => model.IsListedPublicly):
+            </span>
+            <span class="display-field">
+                @Html.DisplayFor(model => model.IsListedPublicly)
+            </span>
+        </div>
+        <div>
+            <span class="display-label">
+                @Html.DisplayNameFor(model => model.FinalAgenda):
+            </span>
+            <div class="display-field">
+                @Html.TextAreaFor(model => model.FinalAgenda, new{ @readonly="readonly", @rows="5", @class="input-xxlarge"})
+            </div>
+        </div>
+    </div>
+
+@**** Buttons for deleting, editing and back to committee ****@
+<div>
+   
+    @Html.ActionLink("Back to Committee", "Details","Committees", new { primaryKey1 = Model.Comm_CommOwn_ID,
+                                                                        primaryKey2 = Model.Comm_ID },
+                                                                  new { @class = "btn btn-primary" })
+    @if (ViewBag.isCommitteeAdmin == true) //add delete and edit buttons only if user is CA of this meeting's committee
+    {
+    <span>
+       @Html.ActionLink("Delete Meeting","Delete", new {   primaryKey1 = Model.Comm_CommOwn_ID,
+                                                           primaryKey2 = Model.Comm_ID,
+                                                           primaryKey3 = Model.DateTime.ToString("MM-dd-yyyy h.mm.ss t\\M") },
+                                                    new { @class = "btn btn-primary"} )
+    </span>
+    <span>
+        @Html.ActionLink("Edit Meeting", "Edit", new {   primaryKey1 = Model.Comm_CommOwn_ID,
+                                                            primaryKey2 = Model.Comm_ID,
+                                                            primaryKey3 = Model.DateTime.ToString("MM-dd-yyyy h.mm.ss t\\M") },
+                                                     new { @class = "btn btn-primary"} )
+    </span>                                   
+    }
+</div>
+</div>
+</section>
+
+
+@**** Display discussion items ****@
+<section id="discItems">
+<div class="sub-header">
+    <h2>Discussion Items</h2>
+</div>
+    <table class="table table-striped full-section table-hover">
+        <thead>
+            <tr>
+                <th>@Html.LabelFor(model => model.DiscItem.First().Title)</th>
+                <th>@Html.LabelFor(model => model.DiscItem.First().Decision)</th>
+                <th>@Html.LabelFor(model => model.DiscItem.First().Description)</th>
+                 @if (ViewBag.isCommitteeAdmin == true) {
+                        <th></th>
+                        }
+            </tr>
+            </thead>
+        <tbody>
+            @foreach (TeamBananaPhase4.Models.DiscItem di in Model.DiscItem.Where(cm=> cm.IsArchived == "N"))  //list each discussion item that the meeting has.
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(di.Title, "details", "DiscItem", new { primaryKey1 = di.Meeting_Comm_CommOwn_ID,
+                                                                                primaryKey2 = di.Meeting_Comm_ID,
+                                                                                primaryKey3 = di.Meeting_DateTime.ToString("MM-dd-yyyy h.mm.ss t\\M"),
+                                                                                primaryKey4 = di.Title }, null )
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => di.Decision)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => di.Description)
+                    </td>
+                    @if (ViewBag.isCommitteeAdmin == true) {
+                        <td>
+                          @Html.ActionLink("Archive", "Archive", "DiscItem", new { primaryKey1 = di.Meeting_Comm_CommOwn_ID,
+                                                                                primaryKey2 = di.Meeting_Comm_ID,
+                                                                                primaryKey3 = di.Meeting_DateTime.ToString("MM-dd-yyyy h.mm.ss t\\M"),
+                                                                                primaryKey4 = di.Title }, null )
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    @**** Add discussion item button if user is CA ****@
+    <div class="row-fluid">
+    <div class="span12">
+    @if (ViewBag.isCommitteeAdmin == true)
+    {
+        @Html.ActionLink("Add discussion item","create", "DiscItem", new { primaryKey1 = Model.Comm_CommOwn_ID,
+                                                                           primaryKey2 = Model.Comm_ID,
+                                                                           primaryKey3 = Model.DateTime.ToString("MM-dd-yyyy h.mm.ss t\\M") }, 
+                                                                       new { @class = "btn btn-primary" } )
+    }
+    </div>
+</div>
+</section>

@@ -1,0 +1,119 @@
+﻿@model TeamBananaPhase4.Models.DiscItem
+
+@{ViewBag.Title = "Edit " + Model.Title + " Discussion Item";}
+
+<section id="EditDiscItem">
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(model => model.Meeting_Comm_CommOwn_ID)
+        @Html.HiddenFor(model => model.Meeting_Comm_ID)
+        @Html.HiddenFor(model => model.Meeting_DateTime)
+        @Html.HiddenFor(model => model.CreatedBy)
+        @Html.HiddenFor(model => model.CreatedDate)
+        @Html.HiddenFor(model => Model.DiscItemDocument.DiscItem_Meeting_Comm_CommOwn_ID)
+        @Html.HiddenFor(model => Model.DiscItemDocument.DiscItem_Meeting_Comm_ID)
+        @Html.HiddenFor(model => Model.DiscItemDocument.DiscItem_Meeting_DateTime)
+        @Html.HiddenFor(model => Model.DiscItemDocument.DiscItem_Title)
+        @Html.HiddenFor(model => Model.DiscItemDocument.Filename)
+        @Html.HiddenFor(model => Model.IsVoted)
+        @Html.HiddenFor(model => Model.IsAnonVoting)
+        @Html.HiddenFor(model => Model.VoteType)
+        @Html.HiddenFor(model => Model.IsArchived)
+
+
+    <div class="row-fluid">
+        <div class ="span12">
+            
+            <div class="editor-label">
+                @Html.Label("Title")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Title)
+                @Html.ValidationMessageFor(model => model.Title)
+            </div>
+            
+            <div class="editor-label">
+                @Html.Label("Description")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+            
+            <div class="editor-label">
+                @Html.Label("Decision")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Decision)
+                @Html.ValidationMessageFor(model => model.Decision)
+            </div>
+
+            <div class="editor-label">
+                @Html.Label("Due Date")
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.DueDate, new { @class = "datepicker" })
+                @Html.ValidationMessageFor(model => model.DueDate)
+            </div>
+        </div>
+    </div>
+    
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.IsRead, "Readable")
+            </div>
+            <div class="editor-field">
+              @Html.RadioButtonFor(model => model.IsRead, "N") No
+              @Html.RadioButtonFor(model => model.IsRead, "Y") Yes
+            </div>
+        </div>
+      </div>
+      <div class="row-fluid">
+        <div class="span12">
+            <div>
+                Upload new file (will replace current file) :
+            </div>
+            <div>
+                <input id="myFile" type="file" name="myFile" runat="server" />
+            </div>
+            <div>
+                @Html.LabelFor(model => Model.DiscItemDocument.Tags)    
+            </div>
+            <div>
+                @Html.EditorFor(model => Model.DiscItemDocument.Tags)
+            </div>
+            <div>
+                @Html.Label("Make discussion document a committee document?")        
+            </div>
+            <div>
+                @Html.DropDownList("isCommDocument", new SelectListItem[] { new SelectListItem { Value = "N", Text = "No" },
+                                                        new SelectListItem { Value = "Ypub", Text = "Yes, and make public" },
+                                                        new SelectListItem { Value = "Yprot", Text = "Yes, and make protected" }}.ToList())
+            </div>
+            <div>
+                @Html.Label("Title of document if made into a committe document")
+            </div>
+            <div>
+                @Html.Editor("comDocTitle")
+                @Html.ValidationMessage("docTitle")
+            </div>
+            <div>
+                @Html.Label("Category of document if made into a committe document")
+            </div>
+            <div>
+                @Html.DropDownList("Category", String.Empty)
+                @Html.ValidationMessage("Category")
+            </div>
+            <input type="submit" value="Save" class="btn btn-primary"/>
+        </div>
+      </div>
+}
+
+</section>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

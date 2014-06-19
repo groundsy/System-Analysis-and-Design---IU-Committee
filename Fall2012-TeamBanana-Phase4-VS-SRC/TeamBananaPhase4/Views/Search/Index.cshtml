@@ -1,0 +1,108 @@
+﻿@************************************************
+ * Team: Team Banana
+ * Programmers: Justin Ashdown, Eric Grounds, Joel Haubold, Jared Short, Dung Truong
+ * 
+ * File: Views\Search\Index.cshtml
+ * Created by: Joel Haubold
+ * Created date: 11-23-12
+ * Primary Programmer: Joel Haubold
+ * File description: View for searching
+ *
+ * Change Log:
+ * Date programmer change
+ *
+ *
+ *************************************************@
+
+@**** Display titles ****@
+@{
+    ViewBag.Title = "Search";
+}
+
+<section>
+<div class="row-fluid">
+    <div class="span12">
+<h3>Please enter search string</h3>
+
+@**** Search controls (textbox and two radio buttons ****@
+@using (Html.BeginForm())
+{
+    <div>
+    @Html.Label("Document tags")
+    @Html.TextBox("SearchString")
+    </div>
+    <div>
+    @Html.RadioButton("WhichCommittees", "All", true)    All Committees
+    @if(@User.Identity.Name != "") //if user is not logged in don't show this option
+    {
+        @Html.RadioButton("WhichCommittees", "My")  <span> My Committees</span>
+    }
+    </div>
+    <p />
+    <p />
+    <input type="submit" value="Search" class="btn btn-primary" /> 
+}
+</div>
+</div>
+
+<div class="sub-header">
+    <h2>Results</h2>
+</div>
+@**** Display search results ****@
+@*//TODO:convert results to pretty view
+//TODO:add link to results*@
+<table class="datatable table table-striped full-section table-hover">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Tags</th>
+            <th>Filename</th>
+            <th>Link To parent</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (ViewBag.CommitteeDocs != null)
+        {
+            foreach (TeamBananaPhase4.Models.CommDocumentPKWithFilenameTags commDoc in ViewBag.CommitteeDocs)
+            {
+                <tr>
+                    <th>@commDoc.Title</th>
+                    <th>@commDoc.Tags</th>
+                    <th>@Html.ActionLink(commDoc.Filename, "Download", "CommDocument", new { //direct download link
+                                                                                               primaryKey1 = commDoc.Comm_CommOwn_ID,
+                                                                                               primaryKey2 = commDoc.Comm_ID,
+                                                                                               primaryKey3 = commDoc.Title
+                                                                                           }, null )</th>
+                    <th>@Html.ActionLink(commDoc.Comm_Name, "Details", "Committees", new {primaryKey1 = commDoc.Comm_CommOwn_ID, primaryKey2 = commDoc.Comm_ID},null)</th>
+                </tr>
+            }
+        }
+        @if (ViewBag.DiscItemDocs != null)
+        {
+            foreach (TeamBananaPhase4.Models.DiscItemDocumentWithoutImage discItemDoc in ViewBag.DiscItemDocs)
+            {
+                <tr>
+                    <th>No title</th>
+                    <th>@discItemDoc.Tags</th>
+                    <th>@Html.ActionLink(discItemDoc.Filename, "Download", "CommDocument", new                    { //direct download link
+                       primaryKey1 = discItemDoc.DiscItem_Meeting_Comm_CommOwn_ID,
+                       primaryKey2 = discItemDoc.DiscItem_Meeting_Comm_ID,
+                       primaryKey3 = discItemDoc.DiscItem_Meeting_DateTime,
+                       primaryKey4 = discItemDoc.DiscItem_Title
+                                                                                           }, null )</th>
+                    <th>@Html.ActionLink(discItemDoc.DiscItem_Title, "Details", "DiscItem", new {primaryKey1 = discItemDoc.DiscItem_Meeting_Comm_CommOwn_ID,
+                                                                                                 primaryKey2 = discItemDoc.DiscItem_Meeting_Comm_ID,
+                                                                                                 primarykey3 = discItemDoc.DiscItem_Meeting_DateTime
+                   },null)</th>
+
+                </tr>
+            }
+        }
+    </tbody>
+
+@**** Display any errors ****@
+@ViewBag.Error
+
+</table>
+
+</section>

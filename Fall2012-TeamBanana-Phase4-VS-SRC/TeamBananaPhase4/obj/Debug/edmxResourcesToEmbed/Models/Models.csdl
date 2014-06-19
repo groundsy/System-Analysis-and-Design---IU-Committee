@@ -1,0 +1,1224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="jashdownModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="jashdownEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AnonVoting" EntityType="jashdownModel.AnonVoting" />
+    <EntitySet Name="AuditLog" EntityType="jashdownModel.AuditLog" />
+    <EntitySet Name="Campus" EntityType="jashdownModel.Campus" />
+    <EntitySet Name="Category" EntityType="jashdownModel.Category" />
+    <EntitySet Name="Comm" EntityType="jashdownModel.Comm" />
+    <EntitySet Name="CommCharge" EntityType="jashdownModel.CommCharge" />
+    <EntitySet Name="CommConstitution" EntityType="jashdownModel.CommConstitution" />
+    <EntitySet Name="CommDocument" EntityType="jashdownModel.CommDocument" />
+    <EntitySet Name="CommMember" EntityType="jashdownModel.CommMember" />
+    <EntitySet Name="CommOwn" EntityType="jashdownModel.CommOwn" />
+    <EntitySet Name="CommSuperAdmin" EntityType="jashdownModel.CommSuperAdmin" />
+    <EntitySet Name="DiscItem" EntityType="jashdownModel.DiscItem" />
+    <EntitySet Name="DiscItemDocument" EntityType="jashdownModel.DiscItemDocument" />
+    <EntitySet Name="Discussion" EntityType="jashdownModel.Discussion" />
+    <EntitySet Name="Employer" EntityType="jashdownModel.Employer" />
+    <EntitySet Name="Meeting" EntityType="jashdownModel.Meeting" />
+    <EntitySet Name="MemberRole" EntityType="jashdownModel.MemberRole" />
+    <EntitySet Name="School" EntityType="jashdownModel.School" />
+    <EntitySet Name="SysUser" EntityType="jashdownModel.SysUser" />
+    <EntitySet Name="Unit" EntityType="jashdownModel.Unit" />
+    <EntitySet Name="University" EntityType="jashdownModel.University" />
+    <EntitySet Name="VoteType" EntityType="jashdownModel.VoteType" />
+    <AssociationSet Name="AnonVoting_DiscItem_FK" Association="jashdownModel.AnonVoting_DiscItem_FK">
+      <End Role="DiscItem" EntitySet="DiscItem" />
+      <End Role="AnonVoting" EntitySet="AnonVoting" />
+    </AssociationSet>
+    <AssociationSet Name="AuditLog_SysUser_FK" Association="jashdownModel.AuditLog_SysUser_FK">
+      <End Role="SysUser" EntitySet="SysUser" />
+      <End Role="AuditLog" EntitySet="AuditLog" />
+    </AssociationSet>
+    <AssociationSet Name="Campus_CommOwn_FK" Association="jashdownModel.Campus_CommOwn_FK">
+      <End Role="CommOwn" EntitySet="CommOwn" />
+      <End Role="Campus" EntitySet="Campus" />
+    </AssociationSet>
+    <AssociationSet Name="Campus_Employer_FK" Association="jashdownModel.Campus_Employer_FK">
+      <End Role="Employer" EntitySet="Employer" />
+      <End Role="Campus" EntitySet="Campus" />
+    </AssociationSet>
+    <AssociationSet Name="Campus_SysUser_FK" Association="jashdownModel.Campus_SysUser_FK">
+      <End Role="SysUser" EntitySet="SysUser" />
+      <End Role="Campus" EntitySet="Campus" />
+    </AssociationSet>
+    <AssociationSet Name="Campus_University_FK" Association="jashdownModel.Campus_University_FK">
+      <End Role="University" EntitySet="University" />
+      <End Role="Campus" EntitySet="Campus" />
+    </AssociationSet>
+    <AssociationSet Name="School_Campus_FK" Association="jashdownModel.School_Campus_FK">
+      <End Role="Campus" EntitySet="Campus" />
+      <End Role="School" EntitySet="School" />
+    </AssociationSet>
+    <AssociationSet Name="Unit_Campus_FK" Association="jashdownModel.Unit_Campus_FK">
+      <End Role="Campus" EntitySet="Campus" />
+      <End Role="Unit" EntitySet="Unit" />
+    </AssociationSet>
+    <AssociationSet Name="CommDocument_Category_FK" Association="jashdownModel.CommDocument_Category_FK">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="CommDocument" EntitySet="CommDocument" />
+    </AssociationSet>
+    <AssociationSet Name="Charges_Committee_FK" Association="jashdownModel.Charges_Committee_FK">
+      <End Role="Comm" EntitySet="Comm" />
+      <End Role="CommCharge" EntitySet="CommCharge" />
+    </AssociationSet>
+    <AssociationSet Name="Comm_CommOwn_FK" Association="jashdownModel.Comm_CommOwn_FK">
+      <End Role="CommOwn" EntitySet="CommOwn" />
+      <End Role="Comm" EntitySet="Comm" />
+    </AssociationSet>
+    <AssociationSet Name="Comm_SysUser_FK" Association="jashdownModel.Comm_SysUser_FK">
+      <End Role="SysUser" EntitySet="SysUser" />
+      <End Role="Comm" EntitySet="Comm" />
+    </AssociationSet>
+    <AssociationSet Name="Comm_SysUser_FKv1" Association="jashdownModel.Comm_SysUser_FKv1">
+      <End Role="SysUser" EntitySet="SysUser" />
+      <End Role="Comm" EntitySet="Comm" />
+    </AssociationSet>
+    <AssociationSet Name="CommMember_Comm_FK" Association="jashdownModel.CommMember_Comm_FK">
+      <End Role="Comm" EntitySet="Comm" />
+      <End Role="CommMember" EntitySet="CommMember" />
+    </AssociationSet>
+    <AssociationSet Name="Constitution_Date_Comm_FK" Association="jashdownModel.Constitution_Date_Comm_FK">
+      <End Role="Comm" EntitySet="Comm" />
+      <End Role="CommConstitution" EntitySet="CommConstitution" />
+    </AssociationSet>
+    <AssociationSet Name="Documents_Comm_FK" Association="jashdownModel.Documents_Comm_FK">
+      <End Role="Comm" EntitySet="Comm" />
+      <End Role="CommDocument" EntitySet="CommDocument" />
+    </AssociationSet>
+    <AssociationSet Name="Meetings_Comm_FK" Association="jashdownModel.Meetings_Comm_FK">
+      <End Role="Comm" EntitySet="Comm" />
+      <End Role="Meeting" EntitySet="Meeting" />
+    </AssociationSet>
+    <AssociationSet Name="CommCharges_SysUser_FK" Association="jashdownModel.CommCharges_SysUser_FK">
+      <End Role="SysUser" EntitySet="SysUser" />
+      <End Role="CommCharge" EntitySet="CommCharge" />
+    </AssociationSet>
+    <AssociationSet Name="CommConstitution_SysUser_FK" Association="jashdownModel.CommConstitution_SysUser_FK">
+      <End Role="SysUser" EntitySet="SysUser" />
+      <End Role="CommConstitution" EntitySet="CommConstitution" />
+    </AssociationSet>
+    <AssociationSet Name="CommDocument_SysUser_FK" Association="jashdownModel.CommDocument_SysUser_FK">
+      <End Role="SysUser" EntitySet="SysUser" />
+      <End Role="CommDocument" EntitySet="CommDocument" />
+    </AssociationSet>
+    <AssociationSet Name="Documents_SysUser_FK" Association="jashdownModel.Documents_SysUser_FK">
+      <End Role="SysUser" EntitySet="SysUser" />
+      <End Role="CommDocument" EntitySet="CommDocument" />
+    </AssociationSet>
+    <AssociationSet Name="CommMember_CommOwn_FK" Association="jashdownModel.CommMember_CommOwn_FK">
+      <End Role="CommOwn" EntitySet="CommOwn" />
+      <End Role="CommMember" EntitySet="CommMember" />
+    </AssociationSet>
+    <AssociationSet Name="CommMember_CommRole_FK" Association="jashdownModel.CommMember_CommRole_FK">
+      <End Role="MemberRole" EntitySet="MemberRole" />
+      <End Role="CommMember" EntitySet="CommMember" />
+    </AssociationSet>
+    <AssociationSet Name="CommMember_SysUser_FK" Association="jashdownModel.CommMember_SysUser_FK">
+      <End Role="SysUser" EntitySet="SysUser" />
+      <End Role="CommMember" EntitySet="CommMember" />
+    </AssociationSet>
+    <AssociationSet Name="CommMember_SysUser_FKv2" Association="jashdownModel.CommMember_SysUser_FKv2">
+      <End Role="SysUser" EntitySet="SysUser" />
+      <End Role="CommMember" EntitySet="CommMember" />
+    </AssociationSet>
+    <AssociationSet Name="CommitteeSuperAdmin_CommOwn_FK" Association="jashdownModel.CommitteeSuperAdmin_CommOwn_FK">
+      <End Role="CommOwn" EntitySet="CommOwn" />
+      <End Role="CommSuperAdmin" EntitySet="CommSuperAdmin" />
+    </AssociationSet>
+    <AssociationSet Name="School_CommOwn_FK" Association="jashdownModel.School_CommOwn_FK">
+      <End Role="CommOwn" EntitySet="CommOwn" />
+      <End Role="School" EntitySet="School" />
+    </AssociationSet>
+    <AssociationSet Name="Unit_CommOwn_FK" Association="jashdownModel.Unit_CommOwn_FK">
+      <End Role="CommOwn" EntitySet="CommOwn" />
+      <End Role="Unit" EntitySet="Unit" />
+    </AssociationSet>
+    <AssociationSet Name="University_CommOwn_FK" Association="jashdownModel.University_CommOwn_FK">
+      <End Role="CommOwn" EntitySet="CommOwn" />
+      <End Role="University" EntitySet="University" />
+    </AssociationSet>
+    <AssociationSet Name="CommitteeSuperAdmin_SysUser_FK" Association="jashdownModel.CommitteeSuperAdmin_SysUser_FK">
+      <End Role="SysUser" EntitySet="SysUser" />
+      <End Role="CommSuperAdmin" EntitySet="CommSuperAdmin" />
+    </AssociationSet>
+    <AssociationSet Name="CommitteeSuperAdmin_SysUser_FKv2" Association="jashdownModel.CommitteeSuperAdmin_SysUser_FKv2">
+      <End Role="SysUser" EntitySet="SysUser" />
+      <End Role="CommSuperAdmin" EntitySet="CommSuperAdmin" />
+    </AssociationSet>
+    <AssociationSet Name="DiscItems_Documents_DiscItems_FK" Association="jashdownModel.DiscItems_Documents_DiscItems_FK">
+      <End Role="DiscItem" EntitySet="DiscItem" />
+      <End Role="DiscItemDocument" EntitySet="DiscItemDocument" />
+    </AssociationSet>
+    <AssociationSet Name="DiscItems_Meeting_FK" Association="jashdownModel.DiscItems_Meeting_FK">
+      <End Role="Meeting" EntitySet="Meeting" />
+      <End Role="DiscItem" EntitySet="DiscItem" />
+    </AssociationSet>
+    <AssociationSet Name="DiscItems_SysUser_FK" Association="jashdownModel.DiscItems_SysUser_FK">
+      <End Role="SysUser" EntitySet="SysUser" />
+      <End Role="DiscItem" EntitySet="DiscItem" />
+    </AssociationSet>
+    <AssociationSet Name="Discuss_Discussion_Items_FK" Association="jashdownModel.Discuss_Discussion_Items_FK">
+      <End Role="DiscItem" EntitySet="DiscItem" />
+      <End Role="Discussion" EntitySet="Discussion" />
+    </AssociationSet>
+    <AssociationSet Name="Discuss_SysUser_FK" Association="jashdownModel.Discuss_SysUser_FK">
+      <End Role="SysUser" EntitySet="SysUser" />
+      <End Role="Discussion" EntitySet="Discussion" />
+    </AssociationSet>
+    <AssociationSet Name="School_Employer_FK" Association="jashdownModel.School_Employer_FK">
+      <End Role="Employer" EntitySet="Employer" />
+      <End Role="School" EntitySet="School" />
+    </AssociationSet>
+    <AssociationSet Name="SysUser_Employer_FK" Association="jashdownModel.SysUser_Employer_FK">
+      <End Role="Employer" EntitySet="Employer" />
+      <End Role="SysUser" EntitySet="SysUser" />
+    </AssociationSet>
+    <AssociationSet Name="Unit_Employer_FK" Association="jashdownModel.Unit_Employer_FK">
+      <End Role="Employer" EntitySet="Employer" />
+      <End Role="Unit" EntitySet="Unit" />
+    </AssociationSet>
+    <AssociationSet Name="Meetings_SysUser_FK" Association="jashdownModel.Meetings_SysUser_FK">
+      <End Role="SysUser" EntitySet="SysUser" />
+      <End Role="Meeting" EntitySet="Meeting" />
+    </AssociationSet>
+    <AssociationSet Name="School_SysUser_FK" Association="jashdownModel.School_SysUser_FK">
+      <End Role="SysUser" EntitySet="SysUser" />
+      <End Role="School" EntitySet="School" />
+    </AssociationSet>
+    <AssociationSet Name="Unit_School_FK" Association="jashdownModel.Unit_School_FK">
+      <End Role="School" EntitySet="School" />
+      <End Role="Unit" EntitySet="Unit" />
+    </AssociationSet>
+    <AssociationSet Name="SysUser_SysUser_FK" Association="jashdownModel.SysUser_SysUser_FK">
+      <End Role="SysUser" EntitySet="SysUser" />
+      <End Role="SysUser1" EntitySet="SysUser" />
+    </AssociationSet>
+    <AssociationSet Name="Unit_SysUser_FK" Association="jashdownModel.Unit_SysUser_FK">
+      <End Role="SysUser" EntitySet="SysUser" />
+      <End Role="Unit" EntitySet="Unit" />
+    </AssociationSet>
+    <AssociationSet Name="University_SysUser_FK" Association="jashdownModel.University_SysUser_FK">
+      <End Role="SysUser" EntitySet="SysUser" />
+      <End Role="University" EntitySet="University" />
+    </AssociationSet>
+    <AssociationSet Name="DiscItemVoteType" Association="jashdownModel.DiscItemVoteType">
+      <End Role="DiscItem" EntitySet="DiscItem" />
+      <End Role="VoteType" EntitySet="VoteType" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AnonVoting">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DiscItem_Title" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="DiscItem_Meeting_Comm_CommOwn_ID" Type="Int32" Nullable="false" />
+    <Property Name="DiscItem_Meeting_DateTime" Type="DateTime" Nullable="false" />
+    <Property Name="DiscItem_Meeting_Comm_ID" Type="Int32" Nullable="false" />
+    <Property Name="Vote" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="DiscItem" Relationship="jashdownModel.AnonVoting_DiscItem_FK" FromRole="AnonVoting" ToRole="DiscItem" />
+  </EntityType>
+  <EntityType Name="AuditLog">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Action" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+    <Property Name="ActionDateTime" Type="DateTime" Nullable="false" />
+    <Property Name="ActionDescription" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="SysUser_Email" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="SysUser" Relationship="jashdownModel.AuditLog_SysUser_FK" FromRole="AuditLog" ToRole="SysUser" />
+  </EntityType>
+  <EntityType Name="Campus">
+    <Key>
+      <PropertyRef Name="University_Code" />
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="University_Code" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="Code" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="Phone" Type="String" MaxLength="14" Unicode="false" FixedLength="false" />
+    <Property Name="CommOwn_ID" Type="Int32" Nullable="false" />
+    <Property Name="Employer_ID" Type="Int32" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="CommOwn" Relationship="jashdownModel.Campus_CommOwn_FK" FromRole="Campus" ToRole="CommOwn" />
+    <NavigationProperty Name="Employer" Relationship="jashdownModel.Campus_Employer_FK" FromRole="Campus" ToRole="Employer" />
+    <NavigationProperty Name="SysUser" Relationship="jashdownModel.Campus_SysUser_FK" FromRole="Campus" ToRole="SysUser" />
+    <NavigationProperty Name="University" Relationship="jashdownModel.Campus_University_FK" FromRole="Campus" ToRole="University" />
+    <NavigationProperty Name="School" Relationship="jashdownModel.School_Campus_FK" FromRole="Campus" ToRole="School" />
+    <NavigationProperty Name="Unit" Relationship="jashdownModel.Unit_Campus_FK" FromRole="Campus" ToRole="Unit" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Type" />
+    </Key>
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="CommDocument" Relationship="jashdownModel.CommDocument_Category_FK" FromRole="Category" ToRole="CommDocument" />
+  </EntityType>
+  <EntityType Name="Comm">
+    <Key>
+      <PropertyRef Name="CommOwn_ID" />
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="CommOwn_ID" Type="Int32" Nullable="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="EffectiveDate" Type="DateTime" Nullable="false" />
+    <Property Name="MinMembers" Type="Int32" />
+    <Property Name="MaxMembers" Type="Int32" />
+    <Property Name="MembershipYears" Type="Int32" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="IsListedPublicly" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+    <Property Name="CreationComments" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="IsArchived" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="ArchivedBy" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ArchivedDate" Type="DateTime" />
+    <Property Name="ArchivedComments" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="CommCharge" Relationship="jashdownModel.Charges_Committee_FK" FromRole="Comm" ToRole="CommCharge" />
+    <NavigationProperty Name="CommOwn" Relationship="jashdownModel.Comm_CommOwn_FK" FromRole="Comm" ToRole="CommOwn" />
+    <NavigationProperty Name="SysUser" Relationship="jashdownModel.Comm_SysUser_FK" FromRole="Comm" ToRole="SysUser" />
+    <NavigationProperty Name="SysUser1" Relationship="jashdownModel.Comm_SysUser_FKv1" FromRole="Comm" ToRole="SysUser" />
+    <NavigationProperty Name="CommMember" Relationship="jashdownModel.CommMember_Comm_FK" FromRole="Comm" ToRole="CommMember" />
+    <NavigationProperty Name="CommConstitution" Relationship="jashdownModel.Constitution_Date_Comm_FK" FromRole="Comm" ToRole="CommConstitution" />
+    <NavigationProperty Name="CommDocument" Relationship="jashdownModel.Documents_Comm_FK" FromRole="Comm" ToRole="CommDocument" />
+    <NavigationProperty Name="Meeting" Relationship="jashdownModel.Meetings_Comm_FK" FromRole="Comm" ToRole="Meeting" />
+  </EntityType>
+  <EntityType Name="CommCharge">
+    <Key>
+      <PropertyRef Name="Comm_CommOwn_ID" />
+      <PropertyRef Name="Comm_ID" />
+      <PropertyRef Name="EffectiveDate" />
+    </Key>
+    <Property Name="Comm_CommOwn_ID" Type="Int32" Nullable="false" />
+    <Property Name="Comm_ID" Type="Int32" Nullable="false" />
+    <Property Name="EffectiveDate" Type="DateTime" Nullable="false" />
+    <Property Name="Charges" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="Comm" Relationship="jashdownModel.Charges_Committee_FK" FromRole="CommCharge" ToRole="Comm" />
+    <NavigationProperty Name="SysUser" Relationship="jashdownModel.CommCharges_SysUser_FK" FromRole="CommCharge" ToRole="SysUser" />
+  </EntityType>
+  <EntityType Name="CommConstitution">
+    <Key>
+      <PropertyRef Name="Comm_CommOwn_ID" />
+      <PropertyRef Name="Comm_ID" />
+      <PropertyRef Name="EffectiveDate" />
+    </Key>
+    <Property Name="Comm_CommOwn_ID" Type="Int32" Nullable="false" />
+    <Property Name="Comm_ID" Type="Int32" Nullable="false" />
+    <Property Name="EffectiveDate" Type="DateTime" Nullable="false" />
+    <Property Name="Constitution" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="Comm" Relationship="jashdownModel.Constitution_Date_Comm_FK" FromRole="CommConstitution" ToRole="Comm" />
+    <NavigationProperty Name="SysUser" Relationship="jashdownModel.CommConstitution_SysUser_FK" FromRole="CommConstitution" ToRole="SysUser" />
+  </EntityType>
+  <EntityType Name="CommDocument">
+    <Key>
+      <PropertyRef Name="Comm_CommOwn_ID" />
+      <PropertyRef Name="Comm_ID" />
+      <PropertyRef Name="Title" />
+    </Key>
+    <Property Name="Comm_CommOwn_ID" Type="Int32" Nullable="false" />
+    <Property Name="Comm_ID" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="DisplayDate" Type="DateTime" Nullable="false" />
+    <Property Name="Tags" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="Filename" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="FileImage" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="Category" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="IsPublic" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="IsProtected" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="UploadedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="UploadedDate" Type="DateTime" Nullable="false" />
+    <Property Name="IsArchived" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="ArchivedBy" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ArchivedDate" Type="DateTime" />
+    <NavigationProperty Name="Category1" Relationship="jashdownModel.CommDocument_Category_FK" FromRole="CommDocument" ToRole="Category" />
+    <NavigationProperty Name="Comm" Relationship="jashdownModel.Documents_Comm_FK" FromRole="CommDocument" ToRole="Comm" />
+    <NavigationProperty Name="SysUser" Relationship="jashdownModel.CommDocument_SysUser_FK" FromRole="CommDocument" ToRole="SysUser" />
+    <NavigationProperty Name="SysUser1" Relationship="jashdownModel.Documents_SysUser_FK" FromRole="CommDocument" ToRole="SysUser" />
+    <Property Type="String" Name="ContentType" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="CommMember">
+    <Key>
+      <PropertyRef Name="Comm_CommOwn_ID" />
+      <PropertyRef Name="Comm_ID" />
+      <PropertyRef Name="Member_Email" />
+      <PropertyRef Name="StartDate" />
+    </Key>
+    <Property Name="Comm_CommOwn_ID" Type="Int32" Nullable="false" />
+    <Property Name="Comm_ID" Type="Int32" Nullable="false" />
+    <Property Name="Member_Email" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="IsAdministrator" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="IsConvener" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="MemberRole_Role" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Voting_Non_Voting" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="Representing" Type="Int32" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" />
+    <Property Name="LastAssignedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="LastAssignedDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="Comm" Relationship="jashdownModel.CommMember_Comm_FK" FromRole="CommMember" ToRole="Comm" />
+    <NavigationProperty Name="CommOwn" Relationship="jashdownModel.CommMember_CommOwn_FK" FromRole="CommMember" ToRole="CommOwn" />
+    <NavigationProperty Name="MemberRole" Relationship="jashdownModel.CommMember_CommRole_FK" FromRole="CommMember" ToRole="MemberRole" />
+    <NavigationProperty Name="SysUser" Relationship="jashdownModel.CommMember_SysUser_FK" FromRole="CommMember" ToRole="SysUser" />
+    <NavigationProperty Name="SysUser1" Relationship="jashdownModel.CommMember_SysUser_FKv2" FromRole="CommMember" ToRole="SysUser" />
+  </EntityType>
+  <EntityType Name="CommOwn">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Campus" Relationship="jashdownModel.Campus_CommOwn_FK" FromRole="CommOwn" ToRole="Campus" />
+    <NavigationProperty Name="Comm" Relationship="jashdownModel.Comm_CommOwn_FK" FromRole="CommOwn" ToRole="Comm" />
+    <NavigationProperty Name="CommMember" Relationship="jashdownModel.CommMember_CommOwn_FK" FromRole="CommOwn" ToRole="CommMember" />
+    <NavigationProperty Name="CommSuperAdmin" Relationship="jashdownModel.CommitteeSuperAdmin_CommOwn_FK" FromRole="CommOwn" ToRole="CommSuperAdmin" />
+    <NavigationProperty Name="School" Relationship="jashdownModel.School_CommOwn_FK" FromRole="CommOwn" ToRole="School" />
+    <NavigationProperty Name="Unit" Relationship="jashdownModel.Unit_CommOwn_FK" FromRole="CommOwn" ToRole="Unit" />
+    <NavigationProperty Name="University" Relationship="jashdownModel.University_CommOwn_FK" FromRole="CommOwn" ToRole="University" />
+  </EntityType>
+  <EntityType Name="CommSuperAdmin">
+    <Key>
+      <PropertyRef Name="SysUser_Email" />
+      <PropertyRef Name="CommOwn_ID" />
+      <PropertyRef Name="StartDate" />
+    </Key>
+    <Property Name="SysUser_Email" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CommOwn_ID" Type="Int32" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" />
+    <Property Name="EndDate" Type="DateTime" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="CommOwn" Relationship="jashdownModel.CommitteeSuperAdmin_CommOwn_FK" FromRole="CommSuperAdmin" ToRole="CommOwn" />
+    <NavigationProperty Name="SysUser" Relationship="jashdownModel.CommitteeSuperAdmin_SysUser_FK" FromRole="CommSuperAdmin" ToRole="SysUser" />
+    <NavigationProperty Name="SysUser1" Relationship="jashdownModel.CommitteeSuperAdmin_SysUser_FKv2" FromRole="CommSuperAdmin" ToRole="SysUser" />
+  </EntityType>
+  <EntityType Name="DiscItem">
+    <Key>
+      <PropertyRef Name="Meeting_Comm_CommOwn_ID" />
+      <PropertyRef Name="Meeting_Comm_ID" />
+      <PropertyRef Name="Meeting_DateTime" />
+      <PropertyRef Name="Title" />
+    </Key>
+    <Property Name="Meeting_Comm_CommOwn_ID" Type="Int32" Nullable="false" />
+    <Property Name="Meeting_Comm_ID" Type="Int32" Nullable="false" />
+    <Property Name="Meeting_DateTime" Type="DateTime" Nullable="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="80" Unicode="false" FixedLength="false" />
+    <Property Name="Decision" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="DueDate" Type="DateTime" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+    <Property Name="IsVoted" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="IsAnonVoting" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="IsArchived" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="IsRead" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <NavigationProperty Name="AnonVoting" Relationship="jashdownModel.AnonVoting_DiscItem_FK" FromRole="DiscItem" ToRole="AnonVoting" />
+    <NavigationProperty Name="DiscItemDocument" Relationship="jashdownModel.DiscItems_Documents_DiscItems_FK" FromRole="DiscItem" ToRole="DiscItemDocument" />
+    <NavigationProperty Name="Meeting" Relationship="jashdownModel.DiscItems_Meeting_FK" FromRole="DiscItem" ToRole="Meeting" />
+    <NavigationProperty Name="SysUser" Relationship="jashdownModel.DiscItems_SysUser_FK" FromRole="DiscItem" ToRole="SysUser" />
+    <NavigationProperty Name="Discussion" Relationship="jashdownModel.Discuss_Discussion_Items_FK" FromRole="DiscItem" ToRole="Discussion" />
+    <NavigationProperty Name="VoteType" Relationship="jashdownModel.DiscItemVoteType" FromRole="DiscItem" ToRole="VoteType" />
+  </EntityType>
+  <EntityType Name="DiscItemDocument">
+    <Key>
+      <PropertyRef Name="DiscItem_Meeting_Comm_CommOwn_ID" />
+      <PropertyRef Name="DiscItem_Meeting_Comm_ID" />
+      <PropertyRef Name="DiscItem_Meeting_DateTime" />
+      <PropertyRef Name="DiscItem_Title" />
+    </Key>
+    <Property Name="DiscItem_Meeting_Comm_CommOwn_ID" Type="Int32" Nullable="false" />
+    <Property Name="DiscItem_Meeting_Comm_ID" Type="Int32" Nullable="false" />
+    <Property Name="DiscItem_Meeting_DateTime" Type="DateTime" Nullable="false" />
+    <Property Name="DiscItem_Title" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="Filename" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="FileImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Tags" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="DiscItem" Relationship="jashdownModel.DiscItems_Documents_DiscItems_FK" FromRole="DiscItemDocument" ToRole="DiscItem" />
+    <Property Type="String" Name="ContentType" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Discussion">
+    <Key>
+      <PropertyRef Name="DiscItem_Meeting_Comm_ID" />
+      <PropertyRef Name="DiscItem_Meeting_Comm_CommOwn_ID" />
+      <PropertyRef Name="DiscItem_Meeting_DateTime" />
+      <PropertyRef Name="DiscItem_Title" />
+      <PropertyRef Name="SysUser_Email" />
+      <PropertyRef Name="ActionDateTime" />
+    </Key>
+    <Property Name="DiscItem_Meeting_Comm_ID" Type="Int32" Nullable="false" />
+    <Property Name="DiscItem_Meeting_Comm_CommOwn_ID" Type="Int32" Nullable="false" />
+    <Property Name="DiscItem_Meeting_DateTime" Type="DateTime" Nullable="false" />
+    <Property Name="DiscItem_Title" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="SysUser_Email" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ActionDateTime" Type="DateTime" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="HasRead" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="HasVoted" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="Vote" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="DiscItem" Relationship="jashdownModel.Discuss_Discussion_Items_FK" FromRole="Discussion" ToRole="DiscItem" />
+    <NavigationProperty Name="SysUser" Relationship="jashdownModel.Discuss_SysUser_FK" FromRole="Discussion" ToRole="SysUser" />
+  </EntityType>
+  <EntityType Name="Employer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Campus" Relationship="jashdownModel.Campus_Employer_FK" FromRole="Employer" ToRole="Campus" />
+    <NavigationProperty Name="School" Relationship="jashdownModel.School_Employer_FK" FromRole="Employer" ToRole="School" />
+    <NavigationProperty Name="SysUser" Relationship="jashdownModel.SysUser_Employer_FK" FromRole="Employer" ToRole="SysUser" />
+    <NavigationProperty Name="Unit" Relationship="jashdownModel.Unit_Employer_FK" FromRole="Employer" ToRole="Unit" />
+  </EntityType>
+  <EntityType Name="Meeting">
+    <Key>
+      <PropertyRef Name="Comm_CommOwn_ID" />
+      <PropertyRef Name="Comm_ID" />
+      <PropertyRef Name="DateTime" />
+    </Key>
+    <Property Name="Comm_CommOwn_ID" Type="Int32" Nullable="false" />
+    <Property Name="Comm_ID" Type="Int32" Nullable="false" />
+    <Property Name="DateTime" Type="DateTime" Nullable="false" />
+    <Property Name="Location" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="IsListedPublicly" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="FinalAgenda" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="Comm" Relationship="jashdownModel.Meetings_Comm_FK" FromRole="Meeting" ToRole="Comm" />
+    <NavigationProperty Name="DiscItem" Relationship="jashdownModel.DiscItems_Meeting_FK" FromRole="Meeting" ToRole="DiscItem" />
+    <NavigationProperty Name="SysUser" Relationship="jashdownModel.Meetings_SysUser_FK" FromRole="Meeting" ToRole="SysUser" />
+  </EntityType>
+  <EntityType Name="MemberRole">
+    <Key>
+      <PropertyRef Name="Role" />
+    </Key>
+    <Property Name="Role" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="CommMember" Relationship="jashdownModel.CommMember_CommRole_FK" FromRole="MemberRole" ToRole="CommMember" />
+  </EntityType>
+  <EntityType Name="School">
+    <Key>
+      <PropertyRef Name="Campus_University_Code" />
+      <PropertyRef Name="Campus_Code" />
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="Campus_University_Code" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="Campus_Code" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="Code" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="Phone" Type="String" MaxLength="14" Unicode="false" FixedLength="false" />
+    <Property Name="CommOwn_ID" Type="Int32" Nullable="false" />
+    <Property Name="Employer_ID" Type="Int32" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="Campus" Relationship="jashdownModel.School_Campus_FK" FromRole="School" ToRole="Campus" />
+    <NavigationProperty Name="CommOwn" Relationship="jashdownModel.School_CommOwn_FK" FromRole="School" ToRole="CommOwn" />
+    <NavigationProperty Name="Employer" Relationship="jashdownModel.School_Employer_FK" FromRole="School" ToRole="Employer" />
+    <NavigationProperty Name="SysUser" Relationship="jashdownModel.School_SysUser_FK" FromRole="School" ToRole="SysUser" />
+    <NavigationProperty Name="Unit" Relationship="jashdownModel.Unit_School_FK" FromRole="School" ToRole="Unit" />
+  </EntityType>
+  <EntityType Name="SysUser">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="Phone" Type="String" MaxLength="14" Unicode="false" FixedLength="false" />
+    <Property Name="OfficeInfo" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="FacultyFlag" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="FacultyRank" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="StaffFlag" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="StaffPosition" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="StudentFlag" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="IsITAdministrator" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="Employer_ID" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="AuditLog" Relationship="jashdownModel.AuditLog_SysUser_FK" FromRole="SysUser" ToRole="AuditLog" />
+    <NavigationProperty Name="Campus" Relationship="jashdownModel.Campus_SysUser_FK" FromRole="SysUser" ToRole="Campus" />
+    <NavigationProperty Name="Comm" Relationship="jashdownModel.Comm_SysUser_FK" FromRole="SysUser" ToRole="Comm" />
+    <NavigationProperty Name="Comm1" Relationship="jashdownModel.Comm_SysUser_FKv1" FromRole="SysUser" ToRole="Comm" />
+    <NavigationProperty Name="CommCharge" Relationship="jashdownModel.CommCharges_SysUser_FK" FromRole="SysUser" ToRole="CommCharge" />
+    <NavigationProperty Name="CommConstitution" Relationship="jashdownModel.CommConstitution_SysUser_FK" FromRole="SysUser" ToRole="CommConstitution" />
+    <NavigationProperty Name="CommDocument" Relationship="jashdownModel.CommDocument_SysUser_FK" FromRole="SysUser" ToRole="CommDocument" />
+    <NavigationProperty Name="CommDocument1" Relationship="jashdownModel.Documents_SysUser_FK" FromRole="SysUser" ToRole="CommDocument" />
+    <NavigationProperty Name="CommMember" Relationship="jashdownModel.CommMember_SysUser_FK" FromRole="SysUser" ToRole="CommMember" />
+    <NavigationProperty Name="CommMember1" Relationship="jashdownModel.CommMember_SysUser_FKv2" FromRole="SysUser" ToRole="CommMember" />
+    <NavigationProperty Name="CommSuperAdmin" Relationship="jashdownModel.CommitteeSuperAdmin_SysUser_FK" FromRole="SysUser" ToRole="CommSuperAdmin" />
+    <NavigationProperty Name="CommSuperAdmin1" Relationship="jashdownModel.CommitteeSuperAdmin_SysUser_FKv2" FromRole="SysUser" ToRole="CommSuperAdmin" />
+    <NavigationProperty Name="DiscItem" Relationship="jashdownModel.DiscItems_SysUser_FK" FromRole="SysUser" ToRole="DiscItem" />
+    <NavigationProperty Name="Discussion" Relationship="jashdownModel.Discuss_SysUser_FK" FromRole="SysUser" ToRole="Discussion" />
+    <NavigationProperty Name="Employer" Relationship="jashdownModel.SysUser_Employer_FK" FromRole="SysUser" ToRole="Employer" />
+    <NavigationProperty Name="Meeting" Relationship="jashdownModel.Meetings_SysUser_FK" FromRole="SysUser" ToRole="Meeting" />
+    <NavigationProperty Name="School" Relationship="jashdownModel.School_SysUser_FK" FromRole="SysUser" ToRole="School" />
+    <NavigationProperty Name="SysUser1" Relationship="jashdownModel.SysUser_SysUser_FK" FromRole="SysUser" ToRole="SysUser1" />
+    <NavigationProperty Name="SysUser2" Relationship="jashdownModel.SysUser_SysUser_FK" FromRole="SysUser1" ToRole="SysUser" />
+    <NavigationProperty Name="Unit" Relationship="jashdownModel.Unit_SysUser_FK" FromRole="SysUser" ToRole="Unit" />
+    <NavigationProperty Name="University" Relationship="jashdownModel.University_SysUser_FK" FromRole="SysUser" ToRole="University" />
+  </EntityType>
+  <EntityType Name="Unit">
+    <Key>
+      <PropertyRef Name="Campus_University_Code" />
+      <PropertyRef Name="Campus_Code" />
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="Campus_University_Code" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="Campus_Code" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="Code" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="Phone" Type="String" MaxLength="14" Unicode="false" FixedLength="false" />
+    <Property Name="CommOwn_ID" Type="Int32" Nullable="false" />
+    <Property Name="Employer_ID" Type="Int32" Nullable="false" />
+    <Property Name="School_Campus_University_Code" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="School_Campus_Code" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="School_Code" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="Campus" Relationship="jashdownModel.Unit_Campus_FK" FromRole="Unit" ToRole="Campus" />
+    <NavigationProperty Name="CommOwn" Relationship="jashdownModel.Unit_CommOwn_FK" FromRole="Unit" ToRole="CommOwn" />
+    <NavigationProperty Name="Employer" Relationship="jashdownModel.Unit_Employer_FK" FromRole="Unit" ToRole="Employer" />
+    <NavigationProperty Name="School" Relationship="jashdownModel.Unit_School_FK" FromRole="Unit" ToRole="School" />
+    <NavigationProperty Name="SysUser" Relationship="jashdownModel.Unit_SysUser_FK" FromRole="Unit" ToRole="SysUser" />
+  </EntityType>
+  <EntityType Name="University">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="Code" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="Phone" Type="String" MaxLength="14" Unicode="false" FixedLength="false" />
+    <Property Name="CommOwn_ID" Type="Int32" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="Campus" Relationship="jashdownModel.Campus_University_FK" FromRole="University" ToRole="Campus" />
+    <NavigationProperty Name="CommOwn" Relationship="jashdownModel.University_CommOwn_FK" FromRole="University" ToRole="CommOwn" />
+    <NavigationProperty Name="SysUser" Relationship="jashdownModel.University_SysUser_FK" FromRole="University" ToRole="SysUser" />
+  </EntityType>
+  <EntityType Name="VoteType">
+    <Key>
+      <PropertyRef Name="Type" />
+    </Key>
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="DiscItem" Relationship="jashdownModel.DiscItemVoteType" FromRole="VoteType" ToRole="DiscItem" />
+  </EntityType>
+  <Association Name="AnonVoting_DiscItem_FK">
+    <End Role="DiscItem" Type="jashdownModel.DiscItem" Multiplicity="1" />
+    <End Role="AnonVoting" Type="jashdownModel.AnonVoting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DiscItem">
+        <PropertyRef Name="Title" />
+        <PropertyRef Name="Meeting_Comm_CommOwn_ID" />
+        <PropertyRef Name="Meeting_DateTime" />
+        <PropertyRef Name="Meeting_Comm_ID" />
+      </Principal>
+      <Dependent Role="AnonVoting">
+        <PropertyRef Name="DiscItem_Title" />
+        <PropertyRef Name="DiscItem_Meeting_Comm_CommOwn_ID" />
+        <PropertyRef Name="DiscItem_Meeting_DateTime" />
+        <PropertyRef Name="DiscItem_Meeting_Comm_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AuditLog_SysUser_FK">
+    <End Role="SysUser" Type="jashdownModel.SysUser" Multiplicity="1" />
+    <End Role="AuditLog" Type="jashdownModel.AuditLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SysUser">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="AuditLog">
+        <PropertyRef Name="SysUser_Email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Campus_CommOwn_FK">
+    <End Role="CommOwn" Type="jashdownModel.CommOwn" Multiplicity="1" />
+    <End Role="Campus" Type="jashdownModel.Campus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CommOwn">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Campus">
+        <PropertyRef Name="CommOwn_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Campus_Employer_FK">
+    <End Role="Employer" Type="jashdownModel.Employer" Multiplicity="1" />
+    <End Role="Campus" Type="jashdownModel.Campus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Campus">
+        <PropertyRef Name="Employer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Campus_SysUser_FK">
+    <End Role="SysUser" Type="jashdownModel.SysUser" Multiplicity="1" />
+    <End Role="Campus" Type="jashdownModel.Campus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SysUser">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="Campus">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Campus_University_FK">
+    <End Role="University" Type="jashdownModel.University" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Campus" Type="jashdownModel.Campus" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="University">
+        <PropertyRef Name="Code" />
+      </Principal>
+      <Dependent Role="Campus">
+        <PropertyRef Name="University_Code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="School_Campus_FK">
+    <End Role="Campus" Type="jashdownModel.Campus" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="School" Type="jashdownModel.School" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Campus">
+        <PropertyRef Name="Code" />
+        <PropertyRef Name="University_Code" />
+      </Principal>
+      <Dependent Role="School">
+        <PropertyRef Name="Campus_Code" />
+        <PropertyRef Name="Campus_University_Code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Unit_Campus_FK">
+    <End Role="Campus" Type="jashdownModel.Campus" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Unit" Type="jashdownModel.Unit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Campus">
+        <PropertyRef Name="Code" />
+        <PropertyRef Name="University_Code" />
+      </Principal>
+      <Dependent Role="Unit">
+        <PropertyRef Name="Campus_Code" />
+        <PropertyRef Name="Campus_University_Code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CommDocument_Category_FK">
+    <End Role="Category" Type="jashdownModel.Category" Multiplicity="1" />
+    <End Role="CommDocument" Type="jashdownModel.CommDocument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Type" />
+      </Principal>
+      <Dependent Role="CommDocument">
+        <PropertyRef Name="Category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Charges_Committee_FK">
+    <End Role="Comm" Type="jashdownModel.Comm" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CommCharge" Type="jashdownModel.CommCharge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comm">
+        <PropertyRef Name="CommOwn_ID" />
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CommCharge">
+        <PropertyRef Name="Comm_CommOwn_ID" />
+        <PropertyRef Name="Comm_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Comm_CommOwn_FK">
+    <End Role="CommOwn" Type="jashdownModel.CommOwn" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Comm" Type="jashdownModel.Comm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CommOwn">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Comm">
+        <PropertyRef Name="CommOwn_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Comm_SysUser_FK">
+    <End Role="SysUser" Type="jashdownModel.SysUser" Multiplicity="1" />
+    <End Role="Comm" Type="jashdownModel.Comm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SysUser">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="Comm">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Comm_SysUser_FKv1">
+    <End Role="SysUser" Type="jashdownModel.SysUser" Multiplicity="0..1" />
+    <End Role="Comm" Type="jashdownModel.Comm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SysUser">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="Comm">
+        <PropertyRef Name="ArchivedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CommMember_Comm_FK">
+    <End Role="Comm" Type="jashdownModel.Comm" Multiplicity="1" />
+    <End Role="CommMember" Type="jashdownModel.CommMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comm">
+        <PropertyRef Name="CommOwn_ID" />
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CommMember">
+        <PropertyRef Name="Comm_CommOwn_ID" />
+        <PropertyRef Name="Comm_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Constitution_Date_Comm_FK">
+    <End Role="Comm" Type="jashdownModel.Comm" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CommConstitution" Type="jashdownModel.CommConstitution" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comm">
+        <PropertyRef Name="CommOwn_ID" />
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CommConstitution">
+        <PropertyRef Name="Comm_CommOwn_ID" />
+        <PropertyRef Name="Comm_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Documents_Comm_FK">
+    <End Role="Comm" Type="jashdownModel.Comm" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CommDocument" Type="jashdownModel.CommDocument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comm">
+        <PropertyRef Name="CommOwn_ID" />
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CommDocument">
+        <PropertyRef Name="Comm_CommOwn_ID" />
+        <PropertyRef Name="Comm_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Meetings_Comm_FK">
+    <End Role="Comm" Type="jashdownModel.Comm" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Meeting" Type="jashdownModel.Meeting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comm">
+        <PropertyRef Name="CommOwn_ID" />
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Meeting">
+        <PropertyRef Name="Comm_CommOwn_ID" />
+        <PropertyRef Name="Comm_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CommCharges_SysUser_FK">
+    <End Role="SysUser" Type="jashdownModel.SysUser" Multiplicity="1" />
+    <End Role="CommCharge" Type="jashdownModel.CommCharge" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SysUser">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="CommCharge">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CommConstitution_SysUser_FK">
+    <End Role="SysUser" Type="jashdownModel.SysUser" Multiplicity="1" />
+    <End Role="CommConstitution" Type="jashdownModel.CommConstitution" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SysUser">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="CommConstitution">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CommDocument_SysUser_FK">
+    <End Role="SysUser" Type="jashdownModel.SysUser" Multiplicity="0..1" />
+    <End Role="CommDocument" Type="jashdownModel.CommDocument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SysUser">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="CommDocument">
+        <PropertyRef Name="ArchivedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Documents_SysUser_FK">
+    <End Role="SysUser" Type="jashdownModel.SysUser" Multiplicity="1" />
+    <End Role="CommDocument" Type="jashdownModel.CommDocument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SysUser">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="CommDocument">
+        <PropertyRef Name="UploadedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CommMember_CommOwn_FK">
+    <End Role="CommOwn" Type="jashdownModel.CommOwn" Multiplicity="0..1" />
+    <End Role="CommMember" Type="jashdownModel.CommMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CommOwn">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CommMember">
+        <PropertyRef Name="Representing" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CommMember_CommRole_FK">
+    <End Role="MemberRole" Type="jashdownModel.MemberRole" Multiplicity="1" />
+    <End Role="CommMember" Type="jashdownModel.CommMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberRole">
+        <PropertyRef Name="Role" />
+      </Principal>
+      <Dependent Role="CommMember">
+        <PropertyRef Name="MemberRole_Role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CommMember_SysUser_FK">
+    <End Role="SysUser" Type="jashdownModel.SysUser" Multiplicity="1" />
+    <End Role="CommMember" Type="jashdownModel.CommMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SysUser">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="CommMember">
+        <PropertyRef Name="LastAssignedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CommMember_SysUser_FKv2">
+    <End Role="SysUser" Type="jashdownModel.SysUser" Multiplicity="1" />
+    <End Role="CommMember" Type="jashdownModel.CommMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SysUser">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="CommMember">
+        <PropertyRef Name="Member_Email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CommitteeSuperAdmin_CommOwn_FK">
+    <End Role="CommOwn" Type="jashdownModel.CommOwn" Multiplicity="1" />
+    <End Role="CommSuperAdmin" Type="jashdownModel.CommSuperAdmin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CommOwn">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CommSuperAdmin">
+        <PropertyRef Name="CommOwn_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="School_CommOwn_FK">
+    <End Role="CommOwn" Type="jashdownModel.CommOwn" Multiplicity="1" />
+    <End Role="School" Type="jashdownModel.School" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CommOwn">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="School">
+        <PropertyRef Name="CommOwn_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Unit_CommOwn_FK">
+    <End Role="CommOwn" Type="jashdownModel.CommOwn" Multiplicity="1" />
+    <End Role="Unit" Type="jashdownModel.Unit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CommOwn">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Unit">
+        <PropertyRef Name="CommOwn_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="University_CommOwn_FK">
+    <End Role="CommOwn" Type="jashdownModel.CommOwn" Multiplicity="1" />
+    <End Role="University" Type="jashdownModel.University" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CommOwn">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="University">
+        <PropertyRef Name="CommOwn_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CommitteeSuperAdmin_SysUser_FK">
+    <End Role="SysUser" Type="jashdownModel.SysUser" Multiplicity="1" />
+    <End Role="CommSuperAdmin" Type="jashdownModel.CommSuperAdmin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SysUser">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="CommSuperAdmin">
+        <PropertyRef Name="SysUser_Email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CommitteeSuperAdmin_SysUser_FKv2">
+    <End Role="SysUser" Type="jashdownModel.SysUser" Multiplicity="1" />
+    <End Role="CommSuperAdmin" Type="jashdownModel.CommSuperAdmin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SysUser">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="CommSuperAdmin">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DiscItems_Documents_DiscItems_FK">
+    <End Role="DiscItem" Type="jashdownModel.DiscItem" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DiscItemDocument" Type="jashdownModel.DiscItemDocument" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="DiscItem">
+        <PropertyRef Name="Title" />
+        <PropertyRef Name="Meeting_Comm_CommOwn_ID" />
+        <PropertyRef Name="Meeting_DateTime" />
+        <PropertyRef Name="Meeting_Comm_ID" />
+      </Principal>
+      <Dependent Role="DiscItemDocument">
+        <PropertyRef Name="DiscItem_Title" />
+        <PropertyRef Name="DiscItem_Meeting_Comm_CommOwn_ID" />
+        <PropertyRef Name="DiscItem_Meeting_DateTime" />
+        <PropertyRef Name="DiscItem_Meeting_Comm_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DiscItems_Meeting_FK">
+    <End Role="Meeting" Type="jashdownModel.Meeting" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DiscItem" Type="jashdownModel.DiscItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Meeting">
+        <PropertyRef Name="DateTime" />
+        <PropertyRef Name="Comm_CommOwn_ID" />
+        <PropertyRef Name="Comm_ID" />
+      </Principal>
+      <Dependent Role="DiscItem">
+        <PropertyRef Name="Meeting_DateTime" />
+        <PropertyRef Name="Meeting_Comm_CommOwn_ID" />
+        <PropertyRef Name="Meeting_Comm_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DiscItems_SysUser_FK">
+    <End Role="SysUser" Type="jashdownModel.SysUser" Multiplicity="1" />
+    <End Role="DiscItem" Type="jashdownModel.DiscItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SysUser">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="DiscItem">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Discuss_Discussion_Items_FK">
+    <End Role="DiscItem" Type="jashdownModel.DiscItem" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Discussion" Type="jashdownModel.Discussion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DiscItem">
+        <PropertyRef Name="Title" />
+        <PropertyRef Name="Meeting_Comm_CommOwn_ID" />
+        <PropertyRef Name="Meeting_DateTime" />
+        <PropertyRef Name="Meeting_Comm_ID" />
+      </Principal>
+      <Dependent Role="Discussion">
+        <PropertyRef Name="DiscItem_Title" />
+        <PropertyRef Name="DiscItem_Meeting_Comm_CommOwn_ID" />
+        <PropertyRef Name="DiscItem_Meeting_DateTime" />
+        <PropertyRef Name="DiscItem_Meeting_Comm_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Discuss_SysUser_FK">
+    <End Role="SysUser" Type="jashdownModel.SysUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Discussion" Type="jashdownModel.Discussion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SysUser">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="Discussion">
+        <PropertyRef Name="SysUser_Email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="School_Employer_FK">
+    <End Role="Employer" Type="jashdownModel.Employer" Multiplicity="1" />
+    <End Role="School" Type="jashdownModel.School" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="School">
+        <PropertyRef Name="Employer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SysUser_Employer_FK">
+    <End Role="Employer" Type="jashdownModel.Employer" Multiplicity="0..1" />
+    <End Role="SysUser" Type="jashdownModel.SysUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SysUser">
+        <PropertyRef Name="Employer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Unit_Employer_FK">
+    <End Role="Employer" Type="jashdownModel.Employer" Multiplicity="1" />
+    <End Role="Unit" Type="jashdownModel.Unit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Unit">
+        <PropertyRef Name="Employer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Meetings_SysUser_FK">
+    <End Role="SysUser" Type="jashdownModel.SysUser" Multiplicity="1" />
+    <End Role="Meeting" Type="jashdownModel.Meeting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SysUser">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="Meeting">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="School_SysUser_FK">
+    <End Role="SysUser" Type="jashdownModel.SysUser" Multiplicity="1" />
+    <End Role="School" Type="jashdownModel.School" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SysUser">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="School">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Unit_School_FK">
+    <End Role="School" Type="jashdownModel.School" Multiplicity="0..1" />
+    <End Role="Unit" Type="jashdownModel.Unit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="School">
+        <PropertyRef Name="Campus_University_Code" />
+        <PropertyRef Name="Code" />
+        <PropertyRef Name="Campus_Code" />
+      </Principal>
+      <Dependent Role="Unit">
+        <PropertyRef Name="School_Campus_University_Code" />
+        <PropertyRef Name="School_Code" />
+        <PropertyRef Name="School_Campus_Code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SysUser_SysUser_FK">
+    <End Role="SysUser" Type="jashdownModel.SysUser" Multiplicity="1" />
+    <End Role="SysUser1" Type="jashdownModel.SysUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SysUser">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="SysUser1">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Unit_SysUser_FK">
+    <End Role="SysUser" Type="jashdownModel.SysUser" Multiplicity="1" />
+    <End Role="Unit" Type="jashdownModel.Unit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SysUser">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="Unit">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="University_SysUser_FK">
+    <End Role="SysUser" Type="jashdownModel.SysUser" Multiplicity="1" />
+    <End Role="University" Type="jashdownModel.University" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SysUser">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="University">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DiscItemVoteType">
+    <End Role="DiscItem" Type="jashdownModel.DiscItem" Multiplicity="*" />
+    <End Role="VoteType" Type="jashdownModel.VoteType" Multiplicity="*" />
+  </Association>
+</Schema>

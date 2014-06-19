@@ -1,0 +1,52 @@
+﻿@************************************************
+ * Team: Team Banana
+ * Programmers: Justin Ashdown, Eric Grounds, Joel Haubold, Jared Short, Dung Truong
+ * 
+ * File: views\reports\previousChairs.cshtml
+ * Created by: Joel Haubold
+ * Created date: 11-25-12
+ * Primary Programmer: Joel Haubold
+ * File description: displays report information from List of underfilled report
+ *
+ * Change Log:
+ * Date programmer change
+ * 11-28-12 Joel    Made pretty
+ *
+ *************************************************@
+
+@using TeamBananaPhase4.Models;
+@model IQueryable<IGrouping<CommOwn, IGrouping<Comm.PrimaryKeyWithName, CommMember>>>
+@**** Set Title ****@
+@{     ViewBag.Title = "Past and Present chairs of committees report"; }
+
+<section id="ReportSection">
+<div class="row-fluid">
+    <div class="span12">
+        <ul>
+            @foreach (var group in Model)
+            {
+                <li>@group.Key.School.Select(s => s.Name).Concat(group.Key.Unit.Select(u => u.Name)).Concat(group.Key.Campus.Select(c => c.Name)).Concat(group.Key.University.Select(u => u.Name)).First()
+                    <ul>
+                        @foreach (var middle in group)
+                        {
+                            <li>@Html.ActionLink(middle.Key.Name, "Details", "Committees", new { primaryKey1 = middle.Key.CommOwn_ID, primaryKey2 = middle.Key.ID }, null)
+                                <ul>
+                                    @foreach (var inner in middle)
+                                    {
+                                        <li>@inner.Member_Email | @inner.MemberRole_Role | @inner.StartDate.ToShortDateString() | @inner.EndDate.ToShortDateString()</li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+        </ul>
+        @if (Model.Count() == 0)
+        {
+            <p>No Results Found</p>
+        }
+    </div>
+</div>
+</section>
+

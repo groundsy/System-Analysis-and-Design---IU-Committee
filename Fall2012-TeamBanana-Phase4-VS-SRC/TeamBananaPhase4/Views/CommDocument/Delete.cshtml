@@ -1,0 +1,79 @@
+﻿@model TeamBananaPhase4.Models.CommDocument
+@{
+    ViewBag.Title = "Delete";
+}
+<section id="deleteDocument">
+<div class="row-fluid">
+    <div class="span12">
+@using (Html.BeginForm())
+{
+<h3>Are you sure you want to delete this document?</h3>
+<fieldset>
+
+    @Html.HiddenFor(model => model.Comm_CommOwn_ID)
+    @Html.HiddenFor(model => model.Comm_ID)
+
+    <div class="control-group">
+         <b>Committee Name</b>
+    </div>
+    <div class="controls">
+        @Html.DisplayFor(model => model.Comm.Name)
+    </div>    
+    <br />
+    <div class="control-group">
+         <b>@Html.DisplayNameFor(model => model.Title)</b>
+    </div>
+    <div class="controls">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+    <br />
+    <div class="control-group">
+         <b>@Html.DisplayNameFor(model => model.DisplayDate)</b>
+    </div>
+    <div class="controls">
+        @Html.DisplayFor(model => model.DisplayDate)
+    </div>
+    <br />
+    <div class="control-group">
+         <b>@Html.DisplayNameFor(model => model.Tags)</b>
+    </div>
+    <div class="controls">
+        @Html.DisplayFor(model => model.Tags)
+    </div>
+    <br />
+    <div class="control-group">
+        <b> @Html.DisplayNameFor(model => model.Filename)</b>
+    </div>
+    <div class="controls">
+        @Html.DisplayFor(model => model.Filename)
+    </div>
+    <br />
+    <div class="control-group">
+         <b>@Html.DisplayNameFor(model => model.Category1.Description)</b>
+    </div>
+    <div class="controls">
+        @Html.DisplayFor(model => model.Category1.Description)
+    </div>    
+    <br />
+    <div class="control-group">
+         <b>@Html.DisplayNameFor(model => model.UploadedDate)</b>
+    </div>
+    <div class="controls">
+        @Html.DisplayFor(model => model.UploadedDate)
+    </div>
+    <br />
+    
+</fieldset>
+
+
+
+    <p>
+        <input type="submit" value="Delete" class="btn btn-primary"/>    
+        @Html.ActionLink("Back to Committee", "Details", "Committees", new { primaryKey1 = Model.Comm_CommOwn_ID, primaryKey2 = Model.Comm_ID }, new { @class = "btn" })
+    </p>
+}
+
+</div>
+</div>
+</section>
+</section> 

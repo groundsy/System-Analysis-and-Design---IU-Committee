@@ -1,0 +1,83 @@
+﻿@model TeamBananaPhase4.Models.Discussion
+
+@{
+    ViewBag.Title = "Mark the " + ViewBag.DiscItem_Title + " discussion item as read";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.DiscItem_Meeting_Comm_CommOwn_ID)
+    @Html.HiddenFor(model => model.DiscItem_Meeting_Comm_ID)
+    @Html.HiddenFor(model => model.DiscItem_Meeting_DateTime)
+    @Html.HiddenFor(model => model.DiscItem_Title)
+    @Html.HiddenFor(model => model.SysUser_Email)
+    @Html.HiddenFor(model => model.ActionDateTime)
+    @Html.HiddenFor(model => model.HasVoted)
+    
+    
+    <div class="row-fluid">
+        <div class="span6">
+
+             @if (ViewBag.HasRead != "Y")
+             {
+                 <div class="editor-label">
+                @Html.LabelFor(model => model.HasRead)
+            </div>
+            <div class="editor-field">
+                @Html.RadioButtonFor(model => model.HasRead, "N") 
+                @Html.Label("N", "No")
+                @Html.RadioButtonFor(model => model.HasRead, "Y")
+                @Html.Label("Y", "Yes")
+            </div>
+            
+                 <p>
+                    <input type="submit" value="Create" />
+                </p>
+             }
+             else
+             {
+               <div>
+               <b>You already marked this discussion item as read</b>
+               </div>
+             }
+                
+                <div>
+                <center>
+                
+                @Html.ActionLink("Back to discussion item details", "Details", "DiscItem", new
+           {
+               primaryKey1 = Model.DiscItem_Meeting_Comm_CommOwn_ID,
+               primaryKey2 = Model.DiscItem_Meeting_Comm_ID,
+               primaryKey3 = Model.DiscItem_Meeting_DateTime.ToString("MM-dd-yyyy"),
+               primaryKey4 = Model.DiscItem_Title
+           },
+                                                                                     new { @class = "btn btn-primary" })
+
+               </center>
+               </div>
+            }
+            
+            </div>
+            </div>
+}
+
+@*  @if (ViewBag.HasRead == "N")
+  {
+            <div class="editor-label">
+                @Html.LabelFor(model => model.HasRead)
+            </div>
+            <div class="editor-field">
+                @Html.RadioButtonFor(model => model.HasRead, "N") 
+                @Html.Label("N", "No")
+                @Html.RadioButtonFor(model => model.HasRead, "Y")
+                @Html.Label("Y", "Yes")
+            </div>
+  }
+            @if (ViewBag.HasRead == "Y")
+            {
+                <div>
+                <b>You read this discussion item</b>
+                </div>
+            }*@

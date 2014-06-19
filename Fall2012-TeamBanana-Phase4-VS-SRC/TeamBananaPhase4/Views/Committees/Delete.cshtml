@@ -1,0 +1,91 @@
+﻿@model TeamBananaPhase4.Models.Comm
+@{
+    ViewBag.Title = "Delete Confirmation: " + Model.Name;
+}
+<section>
+<div class="row-fluid">
+<div class="span12">
+@if (ViewBag.isDeleteable == false)
+{
+    <div>
+        This committee cannot be deleted since is has some members. Please archive instead.
+    </div>
+    @Html.ActionLink("Archive Committee", "Archive", new { primaryKey1 = Model.CommOwn_ID, primaryKey2 = Model.ID }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Back to Committee", "Details", new { primaryKey1 = Model.CommOwn_ID, primaryKey2 = Model.ID }, new { @class = "btn" })   
+}
+else
+{
+
+<h3>Are you sure you want to delete this committee?</h3>
+    
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EffectiveDate): 
+        <span class="display-field">
+            @Html.DisplayFor(model => model.EffectiveDate)
+        </span>
+    </div>
+    
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MinMembers):
+        <span class="display-field">
+            @Html.DisplayFor(model => model.MinMembers)
+        </span>
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MaxMembers):
+        <span class="display-field">
+            @Html.DisplayFor(model => model.MaxMembers)
+        </span>
+    </div>
+    
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MembershipYears):
+        <span class="display-field">
+            @Html.DisplayFor(model => model.MembershipYears)
+        </span>
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Type):
+        <span class="display-field">
+            @Html.DisplayFor(model => model.Type)
+        </span>
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsListedPublicly):
+        <span class="display-field">
+            @Html.DisplayFor(model => model.IsListedPublicly)
+        </span>
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreatedBy):
+        <span class="display-field">
+            @Html.DisplayFor(model => model.SysUser.FirstName) @Html.DisplayFor(model => model.SysUser.LastName)
+        </span>
+    </div>
+    
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreatedDate):
+        <span class="display-field">
+            @Html.DisplayFor(model => model.CreatedDate)
+        </span>
+    </div>
+    
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreationComments):
+        <div class="display-field">
+            @Html.DisplayFor(model => model.CreationComments)
+        </div>
+    </div>
+    
+    using (Html.BeginForm())
+    {
+    <div class="span12">
+        <input type="submit" value="Delete" class = "btn btn-danger"/>
+            @Html.ActionLink("Cancel", "Details", new { primaryKey1 = Model.CommOwn_ID, primaryKey2 = Model.ID }, new { @class = "btn" })   
+    </div>
+    }
+}
+</div>
+</div>
+</section>

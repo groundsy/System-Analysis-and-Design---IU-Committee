@@ -1,0 +1,71 @@
+﻿@model TeamBananaPhase4.Models.CommMember
+
+@{
+    ViewBag.Title = "Edit " + Model.Member_Email + " for " + ViewBag.CommName;
+}
+
+<section id="EditMember">
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.Member_Email)
+    @Html.HiddenFor(model => model.Representing)
+    
+ <div class="row-fluid">
+        <div class="span4">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MemberRole_Role, "Role")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.MemberRole_Role, (IEnumerable<System.Web.Mvc.SelectListItem>)ViewBag.MemberRoles)
+            @Html.ValidationMessageFor(model => model.MemberRole_Role)
+        </div>
+        </div>
+
+        <div class="span4">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Voting_Non_Voting, "Can Vote?")
+        </div>
+        <div class="editor-field">
+            @Html.RadioButtonFor(model => model.Voting_Non_Voting, "N") No
+            @Html.RadioButtonFor(model => model.Voting_Non_Voting, "V") Yes
+        </div>
+   </div>
+</div>
+
+        
+<div class="row-fluid">
+    <div class="span4">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StartDate, "Start Date")
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.StartDate, new { @class = "datepicker" })
+            @Html.HiddenFor(model => model.StartDate)
+            @Html.ValidationMessageFor(model => model.StartDate)
+        </div>
+    </div>
+
+    <div class="span4">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EndDate, "End Date")
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.EndDate, new { @class = "datepicker" })
+            @Html.ValidationMessageFor(model => model.EndDate)
+        </div>
+    </div>
+</div>
+
+        <div class="row-fluid">
+            <div class="span12">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                @Html.ActionLink("Cancel", "details", "committees", new { primaryKey1 = Model.Comm_CommOwn_ID, primaryKey2 = Model.Comm_ID }, new { @class = "btn" })
+            </div>
+        </div>
+}
+</section>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

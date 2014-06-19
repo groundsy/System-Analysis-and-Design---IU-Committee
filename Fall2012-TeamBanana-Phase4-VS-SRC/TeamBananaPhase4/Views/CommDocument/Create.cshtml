@@ -1,0 +1,83 @@
+﻿@model TeamBananaPhase4.Models.CommDocument
+@{
+    ViewBag.Title = "Add New Committee Document";
+}
+<section id="createDocument">
+<div class="row-fluid">
+    <div class="span12">
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.ValidationSummary(true)  
+
+            @Html.HiddenFor(model => model.Comm_CommOwn_ID)
+            @Html.HiddenFor(model => model.Comm_ID)
+            @Html.HiddenFor(model => model.UploadedBy)
+            @Html.HiddenFor(model => model.UploadedDate)
+            @Html.HiddenFor(model => model.IsArchived)
+            @Html.HiddenFor(model => model.ArchivedBy)
+            @Html.HiddenFor(model => model.ArchivedDate)
+            @Html.HiddenFor(model => model.Filename)
+            @Html.HiddenFor(model => model.ContentType)
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.Title, new { @class = "control-label" })
+            </div>
+            <div class="controls">
+                @Html.EditorFor(model => model.Title)
+                <b>@Html.ValidationMessageFor(model => model.Title)</b>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.DisplayDate, "Date and Time of Document", new { @class = "control-label" })
+            </div>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.DisplayDate, new { @class = "datepicker" })
+                <b>@Html.ValidationMessageFor(model => model.DisplayDate)</b>
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.Tags, new { @class = "control-label" })
+            </div>
+            <div class="controls">
+                @Html.EditorFor(model => model.Tags)
+            </div>
+
+            <div class="control-group">
+                @Html.LabelFor(model => model.Category, "Document Category Type", new { @class = "control-label" })
+            </div>
+            <div class="controls">
+                <div class="selectbox">
+                @Html.DropDownList("Category", String.Empty)</div>
+                <b>@Html.ValidationMessageFor(model => model.Category)</b>
+            </div>
+
+            <div class="control-group">
+                @Html.Label("Public or Protected Document", new { @class = "control-label" })
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.IsPublic, new SelectListItem[] { new SelectListItem { Value = "N", Text = "Protected" },
+                                            new SelectListItem { Value = "Y", Text = "Public" } }.ToList())
+                <br />Protected Documents are just for Committee Members
+                <br /> Public Documents are for everyone, once public it stays public
+            </div>
+            <br />
+            
+                           
+            <div>
+                @Html.Label("File to upload: ")
+                <input id="myFile" type="file" name="myFile" runat="server" />
+                <b>@Html.ValidationMessage("FileImage")</b>
+            </div>
+        <br />
+            <p>
+                <input type="submit" value="Create" class="btn btn-primary" />
+                @Html.ActionLink("Cancel", "Details", "Committees", new { primaryKey1 = Model.Comm_CommOwn_ID, primaryKey2 = Model.Comm_ID }, new { @class = "btn" })
+            </p>
+                      
+        }
+    </div>
+</div>
+</section>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

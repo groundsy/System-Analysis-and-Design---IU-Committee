@@ -1,0 +1,132 @@
+﻿@model TeamBananaPhase4.Models.Discussion
+
+@{
+    ViewBag.Title = "Add a comment to " + ViewBag.DiscItem_Title;
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.DiscItem_Meeting_Comm_CommOwn_ID)
+    @Html.HiddenFor(model => model.DiscItem_Meeting_Comm_ID)
+    @Html.HiddenFor(model => model.DiscItem_Meeting_DateTime)
+    @Html.HiddenFor(model => model.DiscItem_Title)
+    @Html.HiddenFor(model => model.SysUser_Email)
+    @Html.HiddenFor(model => model.ActionDateTime)
+
+    
+    <div class="row-fluid">
+        <div class="span4">
+        
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Comment, "Enter a comment")
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Comment)
+                @Html.ValidationMessageFor(model => model.Comment)
+            </div>
+
+            @if (ViewBag.HasRead == "N")
+            {
+            <div class="editor-label">
+                @Html.LabelFor(model => model.HasRead)
+            </div>
+            <div class="editor-field">
+                @Html.RadioButtonFor(model => model.HasRead, "N") 
+                @Html.Label("N", "No")
+                @Html.RadioButtonFor(model => model.HasRead, "Y")
+                @Html.Label("Y", "Yes")
+            </div>
+            }
+            @if (ViewBag.HasRead == "Y")
+            {
+                <div>
+                <b>You read this discussion item</b>
+                </div>
+            }
+            
+
+            @if (ViewBag.HasVoted == "N")
+            {
+                <div class="editor-label">
+                @Html.LabelFor(model => model.Vote)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Vote)
+                @Html.ValidationMessageFor(model => model.Vote)
+            </div>
+            }
+            @if (ViewBag.HasVoted == "Y")
+            {
+               <div>
+               <b>You already voted on this discussion item</b>
+               </div>
+            }
+           
+           
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+
+        </div>
+        </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+@*      <div class="editor-label">
+            @Html.LabelFor(model => model.DiscItem_Meeting_Comm_ID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DiscItem_Meeting_Comm_ID)
+            @Html.ValidationMessageFor(model => model.DiscItem_Meeting_Comm_ID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DiscItem_Meeting_Comm_CommOwn_ID, "DiscItem")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("DiscItem_Meeting_Comm_CommOwn_ID", String.Empty)
+            @Html.ValidationMessageFor(model => model.DiscItem_Meeting_Comm_CommOwn_ID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DiscItem_Meeting_DateTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DiscItem_Meeting_DateTime)
+            @Html.ValidationMessageFor(model => model.DiscItem_Meeting_DateTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DiscItem_Title)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DiscItem_Title)
+            @Html.ValidationMessageFor(model => model.DiscItem_Title)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SysUser_Email, "SysUser")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("SysUser_Email", String.Empty)
+            @Html.ValidationMessageFor(model => model.SysUser_Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ActionDateTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ActionDateTime)
+            @Html.ValidationMessageFor(model => model.ActionDateTime)
+        </div> *@

@@ -1,0 +1,94 @@
+﻿<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.6.2.min.js" type="text/javascript"></script>
+@model IEnumerable<TeamBananaPhase4.Models.Discussion>
+
+@{
+    ViewBag.Title = " Discussions";
+}
+
+<script type="text/javascript">
+    $(function () {
+        $('tr:even').css('background-color', '#B0B0B0');
+    });
+
+</script>
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DiscItem_Meeting_Comm_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiscItem.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiscItem_Meeting_DateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiscItem_Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SysUser.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActionDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HasRead)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HasVoted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vote)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiscItem_Meeting_Comm_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiscItem.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiscItem_Meeting_DateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiscItem_Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SysUser.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActionDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HasRead)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HasVoted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vote)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

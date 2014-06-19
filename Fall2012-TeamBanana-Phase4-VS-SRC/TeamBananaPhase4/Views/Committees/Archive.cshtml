@@ -1,0 +1,101 @@
+﻿@************************************************
+ * Team: Team Banana
+ * Programmers: Justin Ashdown, Eric Grounds, Joel Haubold, Jared Short, Dung Truong
+ * 
+ * File: views\committees\archive.cshtml
+ * Created by: Joel Haubold
+ * Created date: 12-7-12
+ * Primary Programmer: Joel Haubold
+ * File description: Archive prompt for committees
+ *
+ * Change Log:
+ * Date programmer change
+ *
+ *
+ *************************************************@
+@model TeamBananaPhase4.Models.Comm
+@{
+    ViewBag.Title = "Archive Confirmation: " + Model.Name;
+}
+<section>
+<div class="row-fluid">
+<div class="span12">
+
+
+<h4>If you are sure you want to archive this committee enter archive comments below.</h4>
+    
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EffectiveDate): 
+        <span class="display-field">
+            @Html.DisplayFor(model => model.EffectiveDate)
+        </span>
+    </div>
+    
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MinMembers):
+        <span class="display-field">
+            @Html.DisplayFor(model => model.MinMembers)
+        </span>
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MaxMembers):
+        <span class="display-field">
+            @Html.DisplayFor(model => model.MaxMembers)
+        </span>
+    </div>
+    
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MembershipYears):
+        <span class="display-field">
+            @Html.DisplayFor(model => model.MembershipYears)
+        </span>
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Type):
+        <span class="display-field">
+            @Html.DisplayFor(model => model.Type)
+        </span>
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsListedPublicly):
+        <span class="display-field">
+            @Html.DisplayFor(model => model.IsListedPublicly)
+        </span>
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreatedBy):
+        <span class="display-field">
+            @Html.DisplayFor(model => model.SysUser.FirstName) @Html.DisplayFor(model => model.SysUser.LastName)
+        </span>
+    </div>
+    
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreatedDate):
+        <span class="display-field">
+            @Html.DisplayFor(model => model.CreatedDate)
+        </span>
+    </div>
+    
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreationComments):
+        <div class="display-field">
+            @Html.DisplayFor(model => model.CreationComments)
+        </div>
+    </div>
+    
+    @using (Html.BeginForm())
+    {
+    <div class="span12">
+        <div>
+        <br />
+        Archive comments: <br />
+        @Html.TextArea("archiveComments",new {@class ="input-xxlarge"})
+        </div>
+        <input type="submit" value="Archive" class = "btn btn-danger"/>
+            @Html.ActionLink("Cancel", "Details", new { primaryKey1 = Model.CommOwn_ID, primaryKey2 = Model.ID }, new { @class = "btn" })   
+    </div>
+    }
+</div>
+</div>
+</section>

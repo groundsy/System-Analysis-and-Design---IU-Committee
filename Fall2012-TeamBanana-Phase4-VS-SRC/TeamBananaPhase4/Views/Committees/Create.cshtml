@@ -1,0 +1,106 @@
+﻿@*************************************************
+ * Team: Team Banana
+ * Programmers: Justin Ashdown, Eric Grounds, Joel Haubold, Jared Short, Dung Truong
+ * 
+ * File: Views/Committees/Edit.cshtml
+ * Created by: MVC Framework
+ * Created date: 11-17-12
+ * Primary Programmer:
+ * File description: View for committee edit
+ * 
+ * Change Log:
+ *  Date     Programmer     Change
+ * 11-19-12     jh          Fixed links for edit,detail,delete
+ * 11-28-12     dt          Added two controls textarea txtComCharge and txtComConstitution
+ * 12-4-12      jh          Removed unnecessary controls (CommOwnID, Createdby/date, archived fields)
+**************************************************@
+@model TeamBananaPhase4.Models.Comm
+@{
+    ViewBag.Title = "Create New Committee";
+}
+<section id="createCommittee">
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            @Html.ValidationSummary(true)
+
+            @Html.HiddenFor(model => model.CommOwn_ID)
+            
+            <div class="row-fluid">
+                <div class="span4">
+                
+                    @Html.LabelFor(model => model.Name)
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Name)<br />
+                        @Html.ValidationMessageFor(model => model.Name)
+                    </div>
+                
+                    @Html.LabelFor(model => model.EffectiveDate)
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.EffectiveDate)
+                        @Html.ValidationMessageFor(model => model.EffectiveDate)
+                    </div>
+             
+                    @Html.LabelFor(model => model.Type)
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Type)<br />
+                        @Html.ValidationMessageFor(model => model.Type)
+                    </div>
+            
+                    @Html.LabelFor(model => model.IsListedPublicly)
+                    <div class="editor-field">
+                        @Html.DropDownListFor(model => model.IsListedPublicly,new SelectListItem[] { new SelectListItem { Value = "Y", Text = "Yes" }, new SelectListItem { Value = "N", Text = "No" } }.ToList())
+                        @Html.ValidationMessageFor(model => model.IsListedPublicly)
+                    </div>
+                     @Html.LabelFor(model => model.MinMembers)
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.MinMembers)<br />
+                        @Html.ValidationMessageFor(model => model.MinMembers)
+                    </div>
+                    @Html.LabelFor(model => model.MaxMembers)
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.MaxMembers)<br />
+                        @Html.ValidationMessageFor(model => model.MaxMembers)
+                    </div>
+            
+                    @Html.LabelFor(model => model.MembershipYears)
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.MembershipYears)<br />
+                        @Html.ValidationMessageFor(model => model.MembershipYears)
+                    </div>
+
+                </div>
+            
+                <div class="span8 last">
+                   
+                    @Html.LabelFor(model => model.CreationComments)
+                    <div class="editor-field">
+                        @Html.TextAreaFor(model => model.CreationComments, new { @class = "input-xxlarge", @rows="4" })
+                        @Html.ValidationMessageFor(model => model.CreationComments)
+                    </div>
+
+                    @Html.Label("Committee Charges") 
+                    <div class="editor-field">
+                        @Html.TextArea("txtCharge", new { @class = "input-xxlarge", @rows = "5" })
+                    </div>
+                
+                    @Html.Label("Committee Constitution") 
+                    <div class="editor-field">
+                        @Html.TextArea("txtConstitution", new { @class = "input-xxlarge", @rows = "5" })
+                    </div>
+                </div>
+                </div>
+            
+                <div class="row-fluid">
+                   <div class="span12">
+                <p>
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                    @Html.ActionLink("Cancel", "Index", "Divisions", new { primaryKey1 = Model.CommOwn_ID }, new { @class = "btn" })
+                </p>
+                    </div>
+                </div>
+        }
+</section>
+<br />
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

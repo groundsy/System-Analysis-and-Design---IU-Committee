@@ -1,0 +1,141 @@
+﻿@************************************************
+ * Team: Team Banana
+ * Programmers: Justin Ashdown, Eric Grounds, Joel Haubold, Jared Short, Dung Truong
+ * 
+ * File: view\public\division.cshtml
+ * Created by: Joel Haubold
+ * Created date: 11-30-12
+ * Primary Programmer: Joel Haubold
+ * File description: Displays a division with a list of it child divisions and committees.
+ *
+ * Change Log:
+ *  Date    programmer      change
+ * 12-6-12      dt          changed font size of h2 tags
+ *
+ * 
+ *************************************************@
+
+@model TeamBananaPhase4.Models.DivisionViewModel
+@using TeamBananaPhase4.Models
+
+@**** Set title ****@
+@if (Model.divisionType =="")
+{
+    ViewBag.Title = Model.divisionName;
+}
+else
+{
+    ViewBag.Title = Model.divisionType + ": " + Model.divisionName;
+}
+<section id="DivisionDetails">
+    <div class="row-fluid">
+        <div class="span12">
+            @**** Create return link ****@
+            @if (Model.parentDivisionName != "")
+            {
+
+                        @Html.ActionLink("Up to " + Model.parentDivisionName, "index", new { primaryKey1 = Model.parentDivisionID })
+
+            }
+            else
+            { 
+                <p>To access committee information, please choose a university from the list below. If you are a member of the Indiana University Community please login first.</p>
+            }
+        </div>
+    </div>
+</section>
+@**** List child divisions ****@
+<section id="divisions">
+@if (Model.divisionList != null && Model.divisionList.Count() != 0)
+{
+    <div class="sub-header">
+        <h2 style="font-size:1.4em">@Model.childDivisionType</h2>
+    </div>
+    <div class="row-fluid">
+        <div class="span12">
+                @foreach (GenericDivision division in Model.divisionList)
+                {
+                    <div>@Html.ActionLink(division.Name, "index", new { primaryKey1 = division.CommOwn_ID }) </div>
+                }
+        </div>
+    </div>
+}
+</section>
+
+@**** List committees ****@
+<section>
+    <div class="sub-header">
+        <h2 style="font-size:1.4em">Committees</h2>
+    </div>
+    <table class="table table-striped full-section table-hover">
+        <thead>
+            <tr><th>Committee Name</th></tr>
+        </thead>
+        <tbody>
+            @if (Model.committeeList != null && Model.committeeList.Count() != 0)
+            {
+                foreach (Comm comm in Model.committeeList)
+                {
+                    <tr><td>@Html.ActionLink(comm.Name, "Details", "Committees", new
+                    {
+                        primaryKey1 = comm.CommOwn_ID,
+                        primaryKey2 = comm.ID
+                    }, null)
+                    </td></tr>
+                    @**** Buttons for editing/deleting/archiving are in committee details****@                                                                          
+                }
+            }   
+        </tbody>
+    </table> 
+        @**** Display create committee button if user is CSA of current division ****@
+     @if (Model.isCSA == true)
+     {<div class="row-fluid">
+        <div class="span12">       
+                @Html.ActionLink("Create new committee", "create", "Committees", new { primaryKey1 = Model.divisionID }, new { @class = "btn btn-info" })
+            </div>
+        </div>
+     }
+</section>
+
+@**** List CSA ****@
+
+@if (Model.committeeSuperAdminList != null) //list only exists of user is IT Admin
+{
+<section id="stuff">
+    <div class="sub-header">
+        <h2>Super Committee Administrators</h2>
+    </div>
+    <table class="table table-striped full-section table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (CommSuperAdmin csa in Model.committeeSuperAdminList)
+            {
+                <tr>
+                    <td>@(csa.SysUser.FirstName + " " + csa.SysUser.LastName)</td>
+                    <td>@csa.StartDate.ToString("MM-dd-yyyy")</td>
+                    <td>@(csa.EndDate.HasValue ? csa.EndDate.Value.ToString("MM-dd-yyyy") : "None") </td>
+                    <td>@Html.ActionLink("Edit", "Edit", "CommitteeSuperAdmins", new
+                    {
+                        primaryKey1 = csa.SysUser_Email,
+                        primaryKey2 = csa.CommOwn_ID,
+                        primaryKey3 = csa.StartDate.ToString("MM-dd-yyyy")
+                    }, null)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @**** Display create CSA button ****@
+    <div class="row-fluid">
+        <div class="span12">
+            @Html.ActionLink("Add new CSA", "create", "CommitteeSuperAdmins", new { primaryKey1 = Model.divisionID }, new { @class = "btn btn-info" })
+        </div>
+    </div>
+</section>
+}

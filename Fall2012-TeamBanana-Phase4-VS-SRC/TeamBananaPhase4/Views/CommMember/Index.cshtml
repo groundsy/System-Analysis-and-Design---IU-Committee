@@ -1,0 +1,99 @@
+﻿@model IEnumerable<TeamBananaPhase4.Models.CommMember>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Comm.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comm_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SysUser1.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsAdministrator)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsConvener)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MemberRole.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Voting_Non_Voting)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CommOwn.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SysUser.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastAssignedDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comm.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comm_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SysUser1.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsAdministrator)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsConvener)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MemberRole.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Voting_Non_Voting)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CommOwn.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SysUser.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastAssignedDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

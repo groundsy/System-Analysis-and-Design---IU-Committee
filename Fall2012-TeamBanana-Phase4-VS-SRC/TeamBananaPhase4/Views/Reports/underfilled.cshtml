@@ -1,0 +1,45 @@
+﻿@************************************************
+ * Team: Team Banana
+ * Programmers: Justin Ashdown, Eric Grounds, Joel Haubold, Jared Short, Dung Truong
+ * 
+ * File: views\reports\underfilled.cshtml
+ * Created by: Joel Haubold
+ * Created date: 11-25-12
+ * Primary Programmer: Joel Haubold
+ * File description: displays report information from List of underfilled report
+ *
+ * Change Log:
+ * Date programmer change
+ *
+ *
+ *************************************************@
+
+@using TeamBananaPhase4.Models;
+
+@model IQueryable<IGrouping<CommOwn, Comm>>
+
+@**** Set Title ****@
+@{     ViewBag.Title = "Underfilled committees report"; }
+
+<section>
+<div class="row-fluid">
+    <div class="span12">
+
+        <ul>
+            @foreach (var group in Model)
+            {
+                <li>@group.Key.School.Select(s => s.Name).Concat(group.Key.Unit.Select(u => u.Name)).Concat(group.Key.Campus.Select(c => c.Name)).Concat(group.Key.University.Select(u => u.Name)).First()
+                    <ul>
+                    @foreach (Comm comm in group)
+                    {
+                        <li>
+                            @Html.ActionLink(comm.Name, "Details", "Committees", new { primaryKey1 = comm.CommOwn_ID, primaryKey2 = comm.ID }, null) Minimum: @comm.MinMembers Currently: @comm.CommMember.Count(cm => cm.StartDate < DateTime.Now && cm.EndDate >= DateTime.Today)
+                        </li>
+                    }
+                    </ul>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+</section>

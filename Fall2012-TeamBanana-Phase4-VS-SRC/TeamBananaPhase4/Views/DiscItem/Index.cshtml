@@ -1,0 +1,113 @@
+﻿<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.6.2.min.js" type="text/javascript"></script>
+
+@model IEnumerable<TeamBananaPhase4.Models.DiscItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script type="text/javascript">
+    $(function () {
+        $('tr:even').css('background-color', '#B0B0B0');
+    });
+</script>
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Meeting.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Meeting_Comm_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Meeting_DateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiscItemDocument.Filename)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Decision)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DueDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SysUser.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsVoted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsAnonVoting)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsArchived)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsRead)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Meeting.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Meeting_Comm_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Meeting_DateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiscItemDocument.Filename)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Decision)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DueDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SysUser.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsVoted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsAnonVoting)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsArchived)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsRead)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {primaryKey1 = item.Meeting_Comm_CommOwn_ID, primaryKey2 = item.Meeting_Comm_ID, primaryKey3 = item.Meeting_DateTime, primaryKey4 = item.Title }) |
+            @Html.ActionLink("Details", "Details", new {primaryKey1 = item.Meeting_Comm_CommOwn_ID, primaryKey2 = item.Meeting_Comm_ID, primaryKey3 = item.Meeting_DateTime, primaryKey4 = item.Title  }) |
+            @Html.ActionLink("Delete", "Delete", new {primaryKey1 = item.Meeting_Comm_CommOwn_ID, primaryKey2 = item.Meeting_Comm_ID, primaryKey3 = item.Meeting_DateTime, primaryKey4 = item.Title })
+        </td>
+    </tr>
+}
+
+</table>

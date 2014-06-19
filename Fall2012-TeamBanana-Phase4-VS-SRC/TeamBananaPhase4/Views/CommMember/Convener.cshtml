@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Set chairs for " + ViewBag.CommName;
+}
+<section>
+    <div class="row-fluid">
+        <div class="span12">
+            Please select the chairs for this meeting.<br />
+            Note this can only be done once. <br /><br />
+            @using (Html.BeginForm())
+            {
+                //select list
+                <div>
+                @foreach (var member in (IEnumerable<SelectListItem>)ViewBag.membersList)
+                {
+                    <label><input type="checkbox" name="newChairs" value="@member.Value" />@member.Value</label>
+                }
+                </div>
+                                                                                                                                 
+                <input type="submit" value="Update" class="btn btn-primary" />
+                @Html.ActionLink("Cancel", "details", "committees", new { primaryKey1 = ViewBag.Comm_CommOwn_ID, primaryKey2 = ViewBag.Comm_ID }, new { @class = "btn" })
+            }
+
+        </div>
+    </div>
+</section>

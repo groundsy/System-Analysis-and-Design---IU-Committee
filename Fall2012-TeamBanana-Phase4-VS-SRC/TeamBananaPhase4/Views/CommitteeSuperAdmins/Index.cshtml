@@ -1,0 +1,56 @@
+﻿@model IEnumerable<TeamBananaPhase4.Models.CommSuperAdmin>
+@using TeamBananaPhase4.Models
+@{
+    ViewBag.Title = "Committee Super Admins";
+}
+<section id="Actions">
+<div class="row-fluid">
+    <div class="span12">
+<p>
+    @Html.ActionLink("Create New", "Create", new { /* primaryKey1=item.PrimaryKey */}, new { @class = "btn btn-info" })
+</p>
+
+    </div>
+</div>
+</section>
+
+<section id="CommitteeSuperAdminTable">
+<table class="table table-striped full-section">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SysUser.Email)
+        </th>
+        <th>
+            Division
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SysUser.Email)
+            </td>
+            <td>
+                @Html.CommName(item.CommOwn_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { primaryKey1 = item.SysUser.Email, primaryKey2 = item.CommOwn_ID, primaryKey3 = item.StartDate.ToString("MM-dd-yyyy")})
+            </td>
+        </tr>
+    }
+</table>
+</section>

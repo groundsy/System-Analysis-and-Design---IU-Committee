@@ -1,0 +1,91 @@
+﻿@************************************************
+ * Team: Team Banana
+ * Programmers: Justin Ashdown, Eric Grounds, Joel Haubold, Jared Short, Dung Truong
+ * 
+ * File: Views\Meetings\Edit.cshtml
+ * Created by: Joel Haubold
+ * Created date: 11-23-12
+ * Primary Programmer: Joel Haubold
+ * File description: View for editing meetings
+ *
+ * Change Log:
+ *  Date     Programmer  Change
+ * 11-27-12     Joel     Made pretty
+ *
+ *************************************************@
+@model TeamBananaPhase4.Models.Meeting
+
+@**** Set title ****@
+@{
+    ViewBag.Title = "Edit Meeting";
+}
+
+@**** Create Html controls for editing meeting ****@
+
+<section id="EditMeetingFields">       
+        
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        @**** Hidden fields are necessary to persist data ****@
+        @Html.HiddenFor(model => model.Comm_CommOwn_ID)
+        @Html.HiddenFor(model => model.Comm_ID)
+        @Html.HiddenFor(model => model.CreatedBy)
+        @Html.HiddenFor(model => model.CreatedDate)
+        @Html.HiddenFor(model => model.DateTime)
+
+        <div class="row-fluid">
+             <div class ="span4">
+        
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.DateTime)
+                </div>
+
+                <div class="editor-field">
+                    @Html.DisplayFor(model => model.DateTime)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Location)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Location)
+                    @Html.ValidationMessageFor(model => model.Location)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.IsListedPublicly)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.IsListedPublicly, new SelectListItem[] {new SelectListItem{ Value = "Y", Text ="Yes" },new SelectListItem{Value="N",Text= "No"}}.ToList() )
+                    @Html.ValidationMessageFor(model => model.IsListedPublicly)
+                </div>
+
+                <p>
+                    <input type="submit" value="Save Meeting" class="btn btn-primary"/>
+                </p>
+            </div>
+            <div class="span8">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.FinalAgenda)
+                </div>
+                <div class="editor-field">
+                    @Html.TextAreaFor(model => model.FinalAgenda, new { @class = "input-xxlarge", @rows = "8" })
+                    @Html.ValidationMessageFor(model => model.FinalAgenda)
+                </div>
+            </div>
+         </div>
+    }
+
+    @**** Return to meeting link (cancel edit) ****@
+    <div class ="row-fluid">
+        <div class="span12">
+        @Html.ActionLink("Back to Meeting", "details", new { primaryKey1 = Model.Comm_CommOwn_ID,
+                                                             primaryKey2 = Model.Comm_ID,
+                                                             primaryKey3 = Model.DateTime.ToString("MM-dd-yyyy h.mm.ss t\\M") }, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</section>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

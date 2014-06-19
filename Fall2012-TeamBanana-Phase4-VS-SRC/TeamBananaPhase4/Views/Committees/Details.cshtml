@@ -1,0 +1,273 @@
+﻿@************************************************
+ * Team: Team Banana
+ * Programmers: Justin Ashdown, Eric Grounds, Joel Haubold, Jared Short, Dung Truong
+ * 
+ * File:
+ * Created by: Joel Haubold
+ * Created date: 12-6-12
+ * Primary Programmer: Joel Haubold
+ * File description: details view for committee, includes logic to display info for Members,CA, and CSA.
+ *
+ * Change Log:
+ * Date programmer change
+ *
+ *
+ *************************************************@
+
+@model TeamBananaPhase4.Models.Comm
+@using TeamBananaPhase4.Models
+@{
+    ViewBag.Title = Model.Name + " Committee";
+}
+
+@**** Committee detail****@
+
+<section>
+    <div class="row-fluid">
+        <div class="span12">
+            
+@*Name, ef date, type
+charges/ef date, consti/ef date *@
+@*** CSA buttons for edit/delete/archive ***@
+@Html.ActionLink("Back to Division", "Index", "Divisions", new { primaryKey1 = Model.CommOwn_ID }, new { @class = "btn" })
+@if (ViewBag.isCSA == true)
+{
+    <span>
+        @Html.ActionLink("Edit Committee", "Edit", new{     primaryKey1 = Model.CommOwn_ID,    primaryKey2 = Model.ID }, new { @class = "btn btn-primary" })
+        @if (ViewBag.isDeleteable == true) //add delete button only if committee is deleteable
+        {
+            @Html.ActionLink("Delete Committee", "Delete", new { primaryKey1 = Model.CommOwn_ID, primaryKey2 = Model.ID }, new { @class = "btn btn-primary" })
+        }
+        @Html.ActionLink("Archive Committee", "Archive", new {    primaryKey1 = Model.CommOwn_ID,    primaryKey2 = Model.ID}, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Update Charges", "Edit", "CommCharges", new {    primaryKey1 = Model.CommOwn_ID,    primaryKey2 = Model.ID}, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Update Constitution", "Edit","CommConstitution", new {    primaryKey1 = Model.CommOwn_ID,    primaryKey2 = Model.ID}, new { @class = "btn btn-primary" })
+
+    </span>
+}
+@*** Public info: Effective date, type, charges, constitution ***@
+    <div>
+        <span class="display-label" >
+            @Html.DisplayNameFor(model => model.EffectiveDate)
+        </span>:
+        <span class="display-field" >
+            @Html.DisplayFor(model => model.EffectiveDate)
+        </span>
+    </div>
+    <div>
+        <span class="display-label" >
+            @Html.DisplayNameFor(model => model.Type)
+        </span>:
+        <span class="display-field" >
+            @Html.DisplayFor(model => model.Type)
+        </span>
+    </div>
+
+    <div class="display-field">
+        @Html.DisplayNameFor(model => model.CommCharge.First().Charges) Effective on @Model.CommCharge.OrderByDescending(cc => cc.EffectiveDate).FirstOrDefault().EffectiveDate.ToLongDateString()
+    </div>
+    <div>@Html.TextAreaFor(model => model.CommCharge.OrderByDescending(cc => cc.EffectiveDate).FirstOrDefault().Charges, new{ @class="input-xxlarge", @rows="5", @readonly="yes"})</div>
+
+    <div class="display-field">
+        @Html.DisplayNameFor(model => model.CommConstitution.First().Constitution) Effective on @Model.CommConstitution.OrderByDescending(cc => cc.EffectiveDate).FirstOrDefault().EffectiveDate.ToLongDateString()
+    </div>
+    <div>@Html.TextAreaFor(model => model.CommConstitution.OrderByDescending(cc => cc.EffectiveDate).FirstOrDefault().Constitution, new{ @class="input-xxlarge", @rows="5", @readonly="yes"})</div>
+
+@*** Member or CSA info:  min/max,memberyears,comments***@
+    @if (ViewBag.isMember == true || ViewBag.isCSA == true)
+    {
+    <div>
+        <span class="display-label" >
+            @Html.DisplayNameFor(model => model.MinMembers)
+        </span>:
+        <span class="display-field" >
+            @Html.DisplayFor(model => model.MinMembers)
+        </span>
+    </div>
+    <div>
+        <span class="display-label" >
+            @Html.DisplayNameFor(model => model.MaxMembers)
+        </span>:
+        <span class="display-field" >
+            @Html.DisplayFor(model => model.MaxMembers)
+        </span>
+    </div>
+    <div>
+        <span class="display-label" >
+            @Html.DisplayNameFor(model => model.MembershipYears)
+        </span>:
+        <span class="display-field" >
+            @Html.DisplayFor(model => model.MembershipYears)
+        </span>
+    </div>
+    }
+    @*** CSA Info: creation comments ***@
+    @if(ViewBag.isCSA == true)
+    {
+    <div>
+        <div class="display-label" >
+            @Html.DisplayNameFor(model => model.CreationComments)
+        </div>
+        <span class="display-field" >
+            @Html.DisplayFor(model => model.CreationComments)
+        </span>
+    </div>
+    }
+</div>
+
+</div>
+
+</section>
+@**** Members ****@
+<section id="members">
+<div class="sub-header">
+    <h2>Members</h2>
+</div>
+    <div class="row-fluid">
+        <div class="span12">
+        @if (ViewBag.isCSA == true)
+        {
+            //button for add member
+            @Html.ActionLink("Add Member", "create", "CommMember", new
+                                                                               {
+                                                                                   primaryKey1 = Model.CommOwn_ID,
+                                                                                   primaryKey2 = Model.ID
+                                                                               }, new { @class = "btn btn-primary" })
+        }
+        @if (ViewBag.isConvener == true)
+        {
+            @Html.ActionLink("Set Chair", "convener", "CommMember", new        {
+                                                                                   primaryKey1 = Model.CommOwn_ID,
+                                                                                   primaryKey2 = Model.ID
+                                                                               }, new { @class = "btn btn-primary" })
+        }
+        </div>
+    </div>
+        
+    <table class="table table-striped full-section table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Representing</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (TeamBananaPhase4.Models.CommMember commMember in Model.CommMember.Where(cm => cm.StartDate<=DateTime.Today && cm.EndDate >= DateTime.Today))
+        {
+            <tr>
+                <td>@commMember.SysUser1.FirstName @commMember.SysUser1.LastName</td>
+                <td>@commMember.MemberRole_Role</td>
+                <td>@commMember.StartDate.ToShortDateString()</td>
+                <td>@commMember.EndDate.ToShortDateString()</td>
+                <td>@Html.CommName((commMember.Representing ?? 0))</td>
+                @if (ViewBag.isCSA == true) 
+                {
+                    <td>@Html.ActionLink("Edit","Edit","CommMember",new { primaryKey1 = commMember.Comm_CommOwn_ID,
+                                                                      primaryKey2 = commMember.Comm_ID,
+                                                                      primaryKey3 = commMember.Member_Email,
+                                                                      primaryKey4 = commMember.StartDate.ToString("MM-dd-yyyy")
+                                                                    }, new { @class = "btn btn-primary btn-mini" })
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+    </table>
+
+
+</section>
+
+@**** Meetings ****@
+<section id="meetings">
+<div class="sub-header">
+    <h2>Meetings</h2>
+</div>
+     @if (ViewBag.isCommitteeAdmin == true)
+    {
+        //button for add meeting
+        <div class="row-fluid">
+        <div class="span12">
+        @Html.ActionLink("Add Meeting", "create", "Meetings", new
+                                                                           {
+                                                                               primaryKey1 = Model.CommOwn_ID,
+                                                                               primaryKey2 = Model.ID
+                                                                           }, new { @class = "btn btn-primary" })
+        </div>
+        </div>
+    }
+    <table class="table table-striped full-section table-hover datatable">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Meeting.First().DateTime)</th>
+            <th>@Html.DisplayNameFor(model => model.Meeting.First().Location)</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (TeamBananaPhase4.Models.Meeting meeting in Model.Meeting.Where(m => m.IsListedPublicly =="Y" || ViewBag.isMember == true).OrderByDescending(m => m.DateTime))
+        {
+            if (meeting.IsListedPublicly == "Y" || ViewBag.isMember == true) // only display meetings that are public or all if user is member
+            {
+            <tr>
+                <td>@Html.ActionLink(Html.DisplayFor(modelItem => meeting.DateTime).ToString(),"Details","Meetings", new { primaryKey1 = Model.CommOwn_ID, primaryKey2 = Model.ID, primaryKey3 = meeting.DateTime.ToString("MM-dd-yyyy h.mm.ss t\\M")}, null)</td>
+                <td>@Html.DisplayFor(modelItem => meeting.Location)</td>
+            </tr>
+            }
+        }
+    </tbody>
+    </table>
+</section>
+@**** Documents ****@
+
+<section id="documents">
+<div class="sub-header">
+    <h2>Committee Documents</h2>
+</div>
+     @if (ViewBag.isCommitteeAdmin == true)
+    {
+        //button for add document
+        <div class="row-fluid">
+        <div class="span12">
+        @Html.ActionLink("Add Document", "create", "CommDocument", new
+                                                                           {
+                                                                               primaryKey1 = Model.CommOwn_ID,
+                                                                               primaryKey2 = Model.ID
+                                                                           }, new { @class = "btn btn-primary" })
+        </div>
+        </div>
+    }
+    <table class="table table-striped full-section table-hover datatable">
+    <thead>
+        <tr>
+            <th>Title (click for details)</th>
+            <th>Category</th>
+            <th>Date</th>
+            <th>Filename (click to download)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (TeamBananaPhase4.Models.CommDocumentPKWithFilenameTags commDocument in (List<TeamBananaPhase4.Models.CommDocumentPKWithFilenameTags>)ViewBag.documentList)
+        {
+            <tr>
+                <th>@Html.ActionLink(commDocument.Title, "Details", "CommDocument", new
+                { //details link
+                    primaryKey1 = commDocument.Comm_CommOwn_ID,
+                    primaryKey2 = commDocument.Comm_ID,
+                    primaryKey3 = commDocument.Title
+                }, null)</th>
+                <th>@commDocument.Category</th>
+                <th>@commDocument.DisplayDate.ToLongDateString()</th>
+                <th>@Html.ActionLink(commDocument.Filename, "Download", "CommDocument", new
+                { //direct download link
+                    primaryKey1 = commDocument.Comm_CommOwn_ID,
+                    primaryKey2 = commDocument.Comm_ID,
+                    primaryKey3 = commDocument.Title
+                }, null)</th>
+            </tr>
+        }          
+    </tbody>
+    </table>
+</section>

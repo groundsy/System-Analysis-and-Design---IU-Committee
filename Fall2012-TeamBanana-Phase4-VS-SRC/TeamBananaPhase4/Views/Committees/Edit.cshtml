@@ -1,0 +1,107 @@
+﻿@*************************************************
+ * Team: Team Banana
+ * Programmers: Justin Ashdown, Eric Grounds, Joel Haubold, Jared Short, Dung Truong
+ * 
+ * File: Views/Committees/Edit.cshtml
+ * Created by: MVC Framework
+ * Created date: 11-17-12
+ * Primary Programmer: Joel Haubold
+ * File description: View for committee edit
+ * 
+ * Change Log:
+ *  Date     Programmer    Change
+ * 11-19-12     jh         Fixed links for edit,detail,delete
+ * 11-28-12     dt         Added two controls textarea txtComCharge and txtComConstitution
+ * 12-7-12      jh         Remove unnecessary controls and prettify.
+**************************************************@
+@model TeamBananaPhase4.Models.Comm
+@{
+    ViewBag.Title = "Edit Committee: " + Model.Name;
+}
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @*Hidden fields are necessary to maintain non editable fields accross post*@
+    @Html.HiddenFor(model => model.CommOwn_ID)
+    @Html.HiddenFor(model => model.ID)
+    @Html.HiddenFor(model => model.CreatedDate)
+    @Html.HiddenFor(model => model.CreatedBy)
+    @Html.HiddenFor(model => model.IsArchived)
+    @Html.HiddenFor(model => model.ArchivedComments)
+    @Html.HiddenFor(model => model.ArchivedDate)
+    @Html.HiddenFor(model => model.ArchivedBy)
+    <section>
+    <div class="row-fluid">
+        <div class="span6">
+            <div class="editor-field">
+                
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Name)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.Name, new { @class = "input-xlarge" })<br />
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.EffectiveDate)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.EffectiveDate, new { @class = "datepicker" })<br />
+                @Html.ValidationMessageFor(model => model.EffectiveDate)
+            </div>
+            
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Type)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Type)<br />
+                @Html.ValidationMessageFor(model => model.Type)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.IsListedPublicly)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.IsListedPublicly,new SelectListItem[] { new SelectListItem { Value = "Y", Text = "Yes" }, new SelectListItem { Value = "N", Text = "No" } }.ToList())<br />
+                @Html.ValidationMessageFor(model => model.IsListedPublicly)
+            </div>
+            <input type="submit" value="Save" class="btn btn-primary" />
+            @Html.ActionLink("Cancel", "Index", "Divisions", new { primaryKey1 = Model.CommOwn_ID }, new { @class = "btn" })
+        </div>
+        <div class="span6 last">
+        <div class="editor-label">
+                @Html.LabelFor(model => model.MinMembers)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.MinMembers)<br />
+                @Html.ValidationMessageFor(model => model.MinMembers)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.MaxMembers)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.MaxMembers)<br />
+                @Html.ValidationMessageFor(model => model.MaxMembers)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.MembershipYears)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.MembershipYears)<br />
+                @Html.ValidationMessageFor(model => model.MembershipYears)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.CreationComments)
+            </div>
+            <div class="editor-field">
+                @Html.TextAreaFor(model => model.CreationComments, new { @class = "input-xlarge", @rows = "5" })<br />
+                @Html.ValidationMessageFor(model => model.CreationComments)
+            </div>
+        </div>
+        
+    </div>   
+    </section>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

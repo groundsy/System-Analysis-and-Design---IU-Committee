@@ -1,0 +1,85 @@
+﻿@************************************************
+ * Team: Team Banana
+ * Programmers: Justin Ashdown, Eric Grounds, Joel Haubold, Jared Short, Dung Truong
+ * 
+ * File: Views\Meetings\Delete
+ * Created by: Joel Haubold
+ * Created date: 11-23-12
+ * Primary Programmer: Joel Haubold
+ * File description: View for deleting meetings
+ *
+ * Change Log:
+ * Date programmer change
+ * 11-27-12 Joel    Made pretty
+ *
+ *************************************************@
+@model TeamBananaPhase4.Models.Meeting
+@**** Set title ****@
+@{ ViewBag.Title = "Delete Confirmation"; }
+<section>
+    <div class="row-fluid">
+        <div class="span12">
+            <h3> Are you sure you want to delete this meeting?</h3>
+            @**** Display meeting information ****@
+            <div>
+                <span class="display-label">
+                    @Html.DisplayNameFor(model => model.DateTime):
+                </span>
+                <span class="display-field">
+                    @Html.DisplayFor(model => model.DateTime)
+                </span>
+            </div>
+            <div>
+                <span class="display-label">
+                    @Html.DisplayNameFor(model => model.Location):
+                </span>
+                <span class="display-field">
+                    @Html.DisplayFor(model => model.Location)
+                </span>
+            </div>
+            <div>
+                <span class="display-label">
+                    @Html.DisplayNameFor(model => model.IsListedPublicly):
+                </span>
+                <span class="display-field">
+                    @Html.DisplayFor(model => model.IsListedPublicly)
+                </span>
+            </div>
+            <div>
+                <span class="display-label">
+                    @Html.DisplayNameFor(model => model.FinalAgenda):
+                </span>
+                <div class="display-field">
+                    @Html.TextAreaFor(model => model.FinalAgenda, new{ @readonly="readonly", @rows="5", @class="input-xxlarge"})
+                </div>
+            </div>
+            <div>
+                <span class="display-label">
+                    @Html.DisplayNameFor(model => model.CreatedBy):
+                </span>
+                <span class="display-field">
+                    @Html.DisplayFor(model => model.CreatedBy)
+                </span>
+            </div>
+            <div>
+                <span class="display-label">
+                    @Html.DisplayNameFor(model => model.CreatedDate):
+                </span>
+                <span class="display-field">
+                    @Html.DisplayFor(model => model.CreatedDate)
+                </span>
+            </div>
+ 
+@**** Delete button ****@
+@using (Html.BeginForm())
+{
+
+    <p />
+    <p />
+    <input type="submit" value="Delete" class="btn btn-danger" /> 
+}
+@**** Cancel button ****@
+@Html.ActionLink("Cancel", "Details", new { primaryKey1 = Model.Comm_CommOwn_ID, primaryKey2 = Model.Comm_ID, primaryKey3 = Model.DateTime.ToString("MM-dd-yyyy h.mm.ss t\\M") }, new { @class = "btn btn-primary" })
+       </div>
+    </div>
+</section>

@@ -1,0 +1,236 @@
+﻿@model TeamBananaPhase4.Models.DiscItem
+@{ViewBag.Title = "Archive the " + ViewBag.DiscItem_Title + " discussion item";}
+
+
+<div class="row-fluid">
+    <div class="span6">
+        <div>
+            <h3>
+                Are you sure you want to Archive this?
+            </h3>
+        </div>
+        <div>
+            <span class="display-label">
+                @Html.DisplayName("Location : ")
+            </span><span class="display-field">
+                @Html.DisplayFor(model => model.Meeting.Location)
+            </span>
+        </div>
+    </div>
+    <div class="span6">
+        <div>
+            <span class="display-label">
+                @Html.DisplayName("Meeting Date & Time : ")
+            </span><span class="display-field">
+                @Html.DisplayFor(model => model.Meeting_DateTime)
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+        <div>
+            <span class="display-label">
+                @Html.DisplayName("Description : ")
+            </span><span class="display-field">
+                @Html.DisplayFor(model => model.Description)
+            </span>
+        </div>
+        <div>
+            <span class="display-label">
+                @Html.DisplayName("Decision : ")
+            </span><span class="display-field">
+                @Html.DisplayFor(model => model.Decision)
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span6">
+        <div>
+            <span class="display-label">
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </span><span class="display-field">
+                @Html.DisplayFor(model => model.CreatedDate)
+            </span>
+        </div>
+    </div>
+    <div class="span6">
+        <div>
+            <span class="display-label">
+                @Html.DisplayName("Due Date : ")
+            </span><span class="display-field">
+                @Html.DisplayFor(model => model.DueDate)
+            </span>
+        </div>
+    </div>
+    <div>
+        @using (Html.BeginForm())
+        {
+        <input type="submit" value="Archive" class="btn btn-primary" />
+        }
+    </div>
+</div>
+
+
+@*</section>
+<section id="DiscItemDetails">
+<div class="row-fluid">
+    <div class="span6">
+        <div>
+            <span class="display-label">
+                @Html.DisplayName("Location : ")
+            </span>
+    
+            <span class="display-field">
+                @Html.DisplayFor(model => model.Meeting.Location)
+            </span>
+        </div>
+        <div>
+            <span class="display-label">
+                @Html.DisplayName("Committee ID : ")
+            </span>
+            <span class="display-field">
+                @Html.DisplayFor(model => model.Meeting_Comm_ID)
+            </span>
+        </div>
+    </div>
+    <div class="span6">
+        <div>
+            <span class="display-label">
+                @Html.DisplayName("Meeting Date & Time : ")
+           </span>
+            <span class="display-field">
+                @Html.DisplayFor(model => model.Meeting_DateTime)
+            </span>
+       </div>
+       <div>
+            <span class="display-label">
+                @Html.DisplayName("Filename : ")
+            </span>
+            <span class="display-field">
+                @Html.DisplayFor(model => model.DiscItemDocument.Filename)
+            </span>
+       </div>
+  </div>
+  </div>
+
+  <div class="row-fluid">
+  <div class="span12">
+    <div>
+        <span class="display-label">
+            @Html.DisplayName("Description : ")
+        </span>
+        <span class="display-field">
+            @Html.DisplayFor(model => model.Description)
+        </span>
+    </div>
+    <div>
+        <span class="display-label">
+            @Html.DisplayName("Decision : ")
+        </span>
+        <span class="display-field">
+            @Html.DisplayFor(model => model.Decision)
+        </span>
+    </div>
+</div> 
+</div>   
+   
+
+<div class="row-fluid">
+  <div class="span6">
+   <div>
+    <span class="display-label">
+         @Html.DisplayName("First Name : ")
+    </span>
+    <span class="display-field">
+        @Html.DisplayFor(model => model.SysUser.FirstName)
+    </span>
+    </div>
+    </div>
+    
+    <div class="span6">
+    <div>
+    <span class="display-label">
+         @Html.DisplayNameFor(model => model.CreatedDate)
+    </span>
+    <span class="display-field">
+        @Html.DisplayFor(model => model.CreatedDate)
+    </span>
+    </div>
+    </div> 
+    </div>
+
+<div class="row-fluid">
+  <div class="span6">
+   <div>
+    <span class="display-label">
+         @Html.DisplayNameFor(model => model.IsVoted)
+    </span>
+    <span class="display-field">
+        @Html.DisplayFor(model => model.IsVoted)
+    </span>
+    </div>
+    </div>
+    
+    <div class="span6">
+        <div>
+        <span class="display-label">
+             @Html.DisplayNameFor(model => model.IsAnonVoting)
+        </span>
+        <span class="display-field">
+            @Html.DisplayFor(model => model.IsAnonVoting)
+        </span>
+        </div>
+        </div>
+        </div>
+        
+<div class="row-fluid">
+    <div class="span6">
+    <div>
+        <span class="display-label">
+         @Html.DisplayNameFor(model => model.IsArchived)
+        </span>
+    <span class="display-field">
+        @Html.DisplayFor(model => model.IsArchived)
+    </span>
+    </div>
+    </div>
+
+    <div class="span6">
+    <div>
+    <span class="display-label">
+         @Html.DisplayNameFor(model => model.IsRead)
+    </span>
+    <span class="display-field">
+        @Html.DisplayFor(model => model.IsRead)
+    </span>
+    </div>
+    </div>
+    </div>
+
+    <center>
+    <b>
+            <span class="display-label">
+                @Html.DisplayName("Due Date : ")
+            </span>
+            <span class="display-field">
+                @Html.DisplayFor(model => model.DueDate)
+            </span>
+    </b>
+    </center>
+    
+  <br />
+  <br />
+ <center> <div>
+
+@using (Html.BeginForm())
+{
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+*@

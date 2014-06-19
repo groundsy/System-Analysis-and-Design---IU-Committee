@@ -1,0 +1,35 @@
+﻿@************************************************
+ * Team: Team Banana
+ * Programmers: Justin Ashdown, Eric Grounds, Joel Haubold, Jared Short, Dung Truong
+ * 
+ * File: view\reports\index.cshtml
+ * Created by: Joel Haubold
+ * Created date: 11-25-12
+ * Primary Programmer: Joel Haubold
+ * File description: View to select reports
+ *
+ * Change Log:
+ * Date programmer change
+ *
+ *
+ *************************************************@
+@**** Set title ****@
+@{     ViewBag.Title = "Reports"; }
+<section id="reportSelection">
+    <div class="row-fluid">
+        <div class="span12">
+
+        @using (Html.BeginForm())
+        {
+            @Html.Label("Please select a report")
+            @Html.DropDownList("selectedReport", (IEnumerable<SelectListItem>)ViewBag.ListOfReports, new { @class = "input-xxlarge" })
+            
+            <p>
+                <p>Reports will include information for every entity you have access to</p>
+                    <input type="submit" value="Generate Report" class="btn btn-primary"/>
+            </p>
+        }
+        @ViewBag.Error
+        </div>
+    </div>
+</section>

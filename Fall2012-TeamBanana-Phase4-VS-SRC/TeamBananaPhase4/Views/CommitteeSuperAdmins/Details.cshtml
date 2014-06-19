@@ -1,0 +1,57 @@
+﻿@model TeamBananaPhase4.Models.CommSuperAdmin
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>CommSuperAdmin</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SysUser.FirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SysUser.FirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CommOwn.ID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CommOwn.ID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StartDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EndDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EndDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SysUser1.FirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SysUser1.FirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreatedDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreatedDate)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

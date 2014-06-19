@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="jashdownModelStoreContainer" CdmEntityContainer="jashdownEntities">
+    <EntitySetMapping Name="AnonVoting">
+      <EntityTypeMapping TypeName="jashdownModel.AnonVoting">
+        <MappingFragment StoreEntitySet="AnonVoting">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DiscItem_Title" ColumnName="DiscItem_Title" />
+          <ScalarProperty Name="DiscItem_Meeting_Comm_CommOwn_ID" ColumnName="DiscItem_Meeting_Comm_CommOwn_ID" />
+          <ScalarProperty Name="DiscItem_Meeting_DateTime" ColumnName="DiscItem_Meeting_DateTime" />
+          <ScalarProperty Name="DiscItem_Meeting_Comm_ID" ColumnName="DiscItem_Meeting_Comm_ID" />
+          <ScalarProperty Name="Vote" ColumnName="Vote" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AuditLog">
+      <EntityTypeMapping TypeName="jashdownModel.AuditLog">
+        <MappingFragment StoreEntitySet="AuditLog">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="ActionDateTime" ColumnName="ActionDateTime" />
+          <ScalarProperty Name="ActionDescription" ColumnName="ActionDescription" />
+          <ScalarProperty Name="SysUser_Email" ColumnName="SysUser_Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Campus">
+      <EntityTypeMapping TypeName="jashdownModel.Campus">
+        <MappingFragment StoreEntitySet="Campus">
+          <ScalarProperty Name="University_Code" ColumnName="University_Code" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="CommOwn_ID" ColumnName="CommOwn_ID" />
+          <ScalarProperty Name="Employer_ID" ColumnName="Employer_ID" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Category">
+      <EntityTypeMapping TypeName="jashdownModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comm">
+      <EntityTypeMapping TypeName="jashdownModel.Comm">
+        <MappingFragment StoreEntitySet="Comm">
+          <ScalarProperty Name="CommOwn_ID" ColumnName="CommOwn_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+          <ScalarProperty Name="MinMembers" ColumnName="MinMembers" />
+          <ScalarProperty Name="MaxMembers" ColumnName="MaxMembers" />
+          <ScalarProperty Name="MembershipYears" ColumnName="MembershipYears" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="IsListedPublicly" ColumnName="IsListedPublicly" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreationComments" ColumnName="CreationComments" />
+          <ScalarProperty Name="IsArchived" ColumnName="IsArchived" />
+          <ScalarProperty Name="ArchivedBy" ColumnName="ArchivedBy" />
+          <ScalarProperty Name="ArchivedDate" ColumnName="ArchivedDate" />
+          <ScalarProperty Name="ArchivedComments" ColumnName="ArchivedComments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CommCharge">
+      <EntityTypeMapping TypeName="jashdownModel.CommCharge">
+        <MappingFragment StoreEntitySet="CommCharge">
+          <ScalarProperty Name="Comm_CommOwn_ID" ColumnName="Comm_CommOwn_ID" />
+          <ScalarProperty Name="Comm_ID" ColumnName="Comm_ID" />
+          <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+          <ScalarProperty Name="Charges" ColumnName="Charges" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CommConstitution">
+      <EntityTypeMapping TypeName="jashdownModel.CommConstitution">
+        <MappingFragment StoreEntitySet="CommConstitution">
+          <ScalarProperty Name="Comm_CommOwn_ID" ColumnName="Comm_CommOwn_ID" />
+          <ScalarProperty Name="Comm_ID" ColumnName="Comm_ID" />
+          <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+          <ScalarProperty Name="Constitution" ColumnName="Constitution" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CommDocument">
+      <EntityTypeMapping TypeName="jashdownModel.CommDocument">
+        <MappingFragment StoreEntitySet="CommDocument">
+          <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+          <ScalarProperty Name="Comm_CommOwn_ID" ColumnName="Comm_CommOwn_ID" />
+          <ScalarProperty Name="Comm_ID" ColumnName="Comm_ID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="DisplayDate" ColumnName="DisplayDate" />
+          <ScalarProperty Name="Tags" ColumnName="Tags" />
+          <ScalarProperty Name="Filename" ColumnName="Filename" />
+          <ScalarProperty Name="FileImage" ColumnName="FileImage" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="IsPublic" ColumnName="IsPublic" />
+          <ScalarProperty Name="IsProtected" ColumnName="IsProtected" />
+          <ScalarProperty Name="UploadedBy" ColumnName="UploadedBy" />
+          <ScalarProperty Name="UploadedDate" ColumnName="UploadedDate" />
+          <ScalarProperty Name="IsArchived" ColumnName="IsArchived" />
+          <ScalarProperty Name="ArchivedBy" ColumnName="ArchivedBy" />
+          <ScalarProperty Name="ArchivedDate" ColumnName="ArchivedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CommMember">
+      <EntityTypeMapping TypeName="jashdownModel.CommMember">
+        <MappingFragment StoreEntitySet="CommMember">
+          <ScalarProperty Name="Comm_CommOwn_ID" ColumnName="Comm_CommOwn_ID" />
+          <ScalarProperty Name="Comm_ID" ColumnName="Comm_ID" />
+          <ScalarProperty Name="Member_Email" ColumnName="Member_Email" />
+          <ScalarProperty Name="IsAdministrator" ColumnName="IsAdministrator" />
+          <ScalarProperty Name="IsConvener" ColumnName="IsConvener" />
+          <ScalarProperty Name="MemberRole_Role" ColumnName="MemberRole_Role" />
+          <ScalarProperty Name="Voting_Non_Voting" ColumnName="Voting/Non-Voting" />
+          <ScalarProperty Name="Representing" ColumnName="Representing" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="LastAssignedBy" ColumnName="LastAssignedBy" />
+          <ScalarProperty Name="LastAssignedDate" ColumnName="LastAssignedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CommOwn">
+      <EntityTypeMapping TypeName="jashdownModel.CommOwn">
+        <MappingFragment StoreEntitySet="CommOwn">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CommSuperAdmin">
+      <EntityTypeMapping TypeName="jashdownModel.CommSuperAdmin">
+        <MappingFragment StoreEntitySet="CommSuperAdmin">
+          <ScalarProperty Name="SysUser_Email" ColumnName="SysUser_Email" />
+          <ScalarProperty Name="CommOwn_ID" ColumnName="CommOwn_ID" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DiscItem">
+      <EntityTypeMapping TypeName="jashdownModel.DiscItem">
+        <MappingFragment StoreEntitySet="DiscItem">
+          <ScalarProperty Name="Meeting_Comm_CommOwn_ID" ColumnName="Meeting_Comm_CommOwn_ID" />
+          <ScalarProperty Name="Meeting_Comm_ID" ColumnName="Meeting_Comm_ID" />
+          <ScalarProperty Name="Meeting_DateTime" ColumnName="Meeting_DateTime" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Decision" ColumnName="Decision" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsVoted" ColumnName="IsVoted" />
+          <ScalarProperty Name="IsAnonVoting" ColumnName="IsAnonVoting" />
+          <ScalarProperty Name="IsArchived" ColumnName="IsArchived" />
+          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DiscItemDocument">
+      <EntityTypeMapping TypeName="jashdownModel.DiscItemDocument">
+        <MappingFragment StoreEntitySet="DiscItemDocument">
+          <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+          <ScalarProperty Name="DiscItem_Meeting_Comm_CommOwn_ID" ColumnName="DiscItem_Meeting_Comm_CommOwn_ID" />
+          <ScalarProperty Name="DiscItem_Meeting_Comm_ID" ColumnName="DiscItem_Meeting_Comm_ID" />
+          <ScalarProperty Name="DiscItem_Meeting_DateTime" ColumnName="DiscItem_Meeting_DateTime" />
+          <ScalarProperty Name="DiscItem_Title" ColumnName="DiscItem_Title" />
+          <ScalarProperty Name="Filename" ColumnName="Filename" />
+          <ScalarProperty Name="FileImage" ColumnName="FileImage" />
+          <ScalarProperty Name="Tags" ColumnName="Tags" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Discussion">
+      <EntityTypeMapping TypeName="jashdownModel.Discussion">
+        <MappingFragment StoreEntitySet="Discussion">
+          <ScalarProperty Name="DiscItem_Meeting_Comm_ID" ColumnName="DiscItem_Meeting_Comm_ID" />
+          <ScalarProperty Name="DiscItem_Meeting_Comm_CommOwn_ID" ColumnName="DiscItem_Meeting_Comm_CommOwn_ID" />
+          <ScalarProperty Name="DiscItem_Meeting_DateTime" ColumnName="DiscItem_Meeting_DateTime" />
+          <ScalarProperty Name="DiscItem_Title" ColumnName="DiscItem_Title" />
+          <ScalarProperty Name="SysUser_Email" ColumnName="SysUser_Email" />
+          <ScalarProperty Name="ActionDateTime" ColumnName="ActionDateTime" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="HasRead" ColumnName="HasRead" />
+          <ScalarProperty Name="HasVoted" ColumnName="HasVoted" />
+          <ScalarProperty Name="Vote" ColumnName="Vote" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employer">
+      <EntityTypeMapping TypeName="jashdownModel.Employer">
+        <MappingFragment StoreEntitySet="Employer">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Meeting">
+      <EntityTypeMapping TypeName="jashdownModel.Meeting">
+        <MappingFragment StoreEntitySet="Meeting">
+          <ScalarProperty Name="Comm_CommOwn_ID" ColumnName="Comm_CommOwn_ID" />
+          <ScalarProperty Name="Comm_ID" ColumnName="Comm_ID" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="IsListedPublicly" ColumnName="IsListedPublicly" />
+          <ScalarProperty Name="FinalAgenda" ColumnName="FinalAgenda" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MemberRole">
+      <EntityTypeMapping TypeName="jashdownModel.MemberRole">
+        <MappingFragment StoreEntitySet="MemberRole">
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="School">
+      <EntityTypeMapping TypeName="jashdownModel.School">
+        <MappingFragment StoreEntitySet="School">
+          <ScalarProperty Name="Campus_University_Code" ColumnName="Campus_University_Code" />
+          <ScalarProperty Name="Campus_Code" ColumnName="Campus_Code" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="CommOwn_ID" ColumnName="CommOwn_ID" />
+          <ScalarProperty Name="Employer_ID" ColumnName="Employer_ID" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SysUser">
+      <EntityTypeMapping TypeName="jashdownModel.SysUser">
+        <MappingFragment StoreEntitySet="SysUser">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="OfficeInfo" ColumnName="OfficeInfo" />
+          <ScalarProperty Name="FacultyFlag" ColumnName="FacultyFlag" />
+          <ScalarProperty Name="FacultyRank" ColumnName="FacultyRank" />
+          <ScalarProperty Name="StaffFlag" ColumnName="StaffFlag" />
+          <ScalarProperty Name="StaffPosition" ColumnName="StaffPosition" />
+          <ScalarProperty Name="StudentFlag" ColumnName="StudentFlag" />
+          <ScalarProperty Name="IsITAdministrator" ColumnName="IsITAdministrator" />
+          <ScalarProperty Name="Employer_ID" ColumnName="Employer_ID" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Unit">
+      <EntityTypeMapping TypeName="jashdownModel.Unit">
+        <MappingFragment StoreEntitySet="Unit">
+          <ScalarProperty Name="Campus_University_Code" ColumnName="Campus_University_Code" />
+          <ScalarProperty Name="Campus_Code" ColumnName="Campus_Code" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="CommOwn_ID" ColumnName="CommOwn_ID" />
+          <ScalarProperty Name="Employer_ID" ColumnName="Employer_ID" />
+          <ScalarProperty Name="School_Campus_University_Code" ColumnName="School_Campus_University_Code" />
+          <ScalarProperty Name="School_Campus_Code" ColumnName="School_Campus_Code" />
+          <ScalarProperty Name="School_Code" ColumnName="School_Code" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="University">
+      <EntityTypeMapping TypeName="jashdownModel.University">
+        <MappingFragment StoreEntitySet="University">
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="CommOwn_ID" ColumnName="CommOwn_ID" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VoteType">
+      <EntityTypeMapping TypeName="jashdownModel.VoteType">
+        <MappingFragment StoreEntitySet="VoteType">
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="DiscItemVoteType" TypeName="jashdownModel.DiscItemVoteType" StoreEntitySet="DiscItemVoteType">
+      <EndProperty Name="DiscItem">
+        <ScalarProperty Name="Meeting_Comm_CommOwn_ID" ColumnName="DiscItem_Meeting_Comm_CommOwn_ID" />
+        <ScalarProperty Name="Meeting_Comm_ID" ColumnName="DiscItem_Meeting_Comm_ID" />
+        <ScalarProperty Name="Meeting_DateTime" ColumnName="DiscItem_Meeting_DateTime" />
+        <ScalarProperty Name="Title" ColumnName="DiscItem_Title" />
+      </EndProperty>
+      <EndProperty Name="VoteType">
+        <ScalarProperty Name="Type" ColumnName="VoteType_Type" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

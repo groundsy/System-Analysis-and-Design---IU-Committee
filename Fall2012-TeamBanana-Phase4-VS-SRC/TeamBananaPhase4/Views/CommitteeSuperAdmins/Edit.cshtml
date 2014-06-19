@@ -1,0 +1,38 @@
+﻿@model TeamBananaPhase4.Models.CommSuperAdmin
+@using TeamBananaPhase4.Models
+@{
+    ViewBag.Title = "Edit " + Model.SysUser_Email + " for " + @Html.CommName(Model.CommOwn_ID);
+}
+<section id="EditCSA">
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+           @Html.HiddenFor(model => model.CreatedBy)
+           @Html.HiddenFor(model => model.StartDate)
+           @Html.HiddenFor(model => model.SysUser_Email)
+           @Html.HiddenFor(model => model.CommOwn_ID)
+           @Html.HiddenFor(model => model.CreatedDate)
+<div class="row-fluid">
+    <div class="span12">   
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EndDate)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.EndDate, new { @class = "datepicker" })
+            @Html.ValidationMessageFor(model => model.EndDate)
+        </div>
+    </div>
+</div>
+        <div class="row-fluid">
+            <div class="span12">
+                <input type="submit" value="Save" class="btn btn-info"/>
+                @Html.ActionLink("Back to Division", "Index", "Divisions", new { primaryKey1 = Model.CommOwn_ID }, new { @class = "btn" })
+            </div>
+        </div>
+}
+</section>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

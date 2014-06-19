@@ -1,0 +1,78 @@
+﻿@model TeamBananaPhase4.Models.CommMember
+
+@{
+    ViewBag.Title = "Add Member for " + ViewBag.CommName;
+}
+
+<section id="AddMember">
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+ <div class="row-fluid">
+    <div class="span4">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Member_Email, "User Email")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Member_Email", String.Empty)
+            @Html.ValidationMessageFor(model => model.Member_Email)
+        </div>
+        </div>
+
+        <div class="span4">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MemberRole_Role, "Role")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.MemberRole_Role, (IEnumerable<System.Web.Mvc.SelectListItem>)ViewBag.MemberRoles)
+            @Html.ValidationMessageFor(model => model.MemberRole_Role)
+        </div>
+        </div>
+
+        <div class="span4">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Voting_Non_Voting, "Can Vote?")
+        </div>
+        <div class="editor-field">
+            @Html.RadioButtonFor(model => model.Voting_Non_Voting, "N") No
+            @Html.RadioButtonFor(model => model.Voting_Non_Voting, "V") Yes
+        </div>
+   </div>
+</div>
+
+        
+<div class="row-fluid">
+    <div class="span4">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StartDate, "Start Date")
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.StartDate, new { @class = "datepicker" })
+            @Html.ValidationMessageFor(model => model.StartDate)
+        </div>
+    </div>
+
+    <div class="span4">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EndDate, "End Date")
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.EndDate, new { @class = "datepicker" })
+            @Html.ValidationMessageFor(model => model.EndDate)
+        </div>
+    </div>
+</div>
+
+        <div class="row-fluid">
+            <div class="span12">
+                <input type="submit" value="Create" class="btn btn-info" />
+                @Html.ActionLink("Back to Committee", "details", "committees", new { primaryKey1 = ViewBag.Comm_CommOwn_ID, primaryKey2 = ViewBag.Comm_ID }, new { @class = "btn" })
+            </div>
+        </div>
+}
+</section>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

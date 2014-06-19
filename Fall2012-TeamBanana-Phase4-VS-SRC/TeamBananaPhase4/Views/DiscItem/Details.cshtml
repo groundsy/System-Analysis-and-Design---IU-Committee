@@ -1,0 +1,338 @@
+﻿﻿@model TeamBananaPhase4.Models.DiscItem
+@{
+    ViewBag.Title = "Details for " + Model.Title + " discussion item";
+}
+
+    <section id="DiscItemDetails">
+            
+        <div class="row-fluid">
+            <div class="span12">
+                <div>
+                @if (ViewBag.isCommitteeAdmin == true) //add archive and edit buttons only if user is CA of this meeting's committee
+                {
+                    @Html.ActionLink("Edit Discussion Item", "Edit", new
+               {
+                   primaryKey1 = Model.Meeting_Comm_CommOwn_ID,
+                   primaryKey2 = Model.Meeting_Comm_ID,
+                   primaryKey3 = Model.Meeting_DateTime.ToString("MM-dd-yyyy h.mm.ss t\\M"),
+                   primaryKey4 = Model.Title
+               }, new
+               {
+                   @class = "btn btn-primary"
+               })
+                                                                
+                
+                    <span>
+                        @Html.ActionLink("Archive", "Archive", "DiscItem", new
+                   {
+                       primaryKey1 = Model.Meeting_Comm_CommOwn_ID,
+                       primaryKey2 = Model.Meeting_Comm_ID,
+                       primaryKey3 = Model.Meeting_DateTime.ToString("MM-dd-yyyy h.mm.ss t\\M"),
+                       primaryKey4 = Model.Title
+                   }, new
+                   {
+                       @class = "btn btn-primary"
+                   })
+
+
+
+                    </span>
+                }
+                
+                <span>
+                    @Html.ActionLink("Back to Meeting", "Details", "Meetings", new
+               {
+                   primaryKey1 = Model.Meeting_Comm_CommOwn_ID,
+                   primaryKey2 = Model.Meeting_Comm_ID,
+                   primaryKey3 = Model.Meeting_DateTime.ToString("MM-dd-yyyy h.mm.ss t\\M")
+               }, new
+               {
+                   @class = "btn btn-primary"
+               })
+                </span>
+                <span>
+                    @if (ViewBag.fileExists)
+                    {
+                            @Html.ActionLink("Download: " + (string)ViewBag.fileName, "Download", new
+                       {
+                           primaryKey1 = Model.DiscItemDocument.DiscItem_Meeting_Comm_CommOwn_ID,
+                           primaryKey2 = Model.DiscItemDocument.DiscItem_Meeting_Comm_ID,
+                           primaryKey3 = Model.DiscItemDocument.DiscItem_Meeting_DateTime.ToString("MM-dd-yyyy h.mm.ss t\\M").Replace('/', '-'),
+                           primaryKey4 = Model.DiscItemDocument.DiscItem_Title
+                       }, new
+                       {
+                           @class = "btn btn-primary"
+                       })
+                    }
+                </span>
+               </div>
+             </div>
+            </div>
+
+          <div class="row-fluid">
+            <div class="span6">
+                <div>
+                    <span class="display-label">
+                        @Html.DisplayName("Location : ")
+                    </span>
+                    <span class="display-field">
+                        @Html.DisplayFor(model => model.Meeting.Location)
+                    </span>
+                </div>
+            </div>
+            <div class="span6">
+                <div>
+                    <span class="display-label">
+                        @Html.DisplayName("Meeting Date & Time : ")
+                    </span>
+                    <span class="display-field">
+                        @Html.DisplayFor(model => model.Meeting_DateTime)
+                    </span>
+                </div>
+                </div>
+            </div>
+
+        
+        <div class="row-fluid">
+            <div class="span12">
+                <div>
+                    <span class="display-label">
+                        @Html.DisplayName("Description : ")
+                    </span>
+                    <span class="display-field">
+                        @Html.DisplayFor(model => model.Description)
+                    </span>
+                </div>
+                <div>
+                    <span class="display-label">
+                        @Html.DisplayName("Decision : ")
+                    </span>
+                    <span class="display-field">
+                        @Html.DisplayFor(model => model.Decision)
+                    </span>
+                </div>
+            </div>
+        </div>
+   
+
+        <div class="row-fluid">
+            <div class="span6">
+                <div>
+                    <span class="display-label">
+                        @Html.DisplayNameFor(model => model.CreatedDate)
+                    </span>
+                    <span class="display-field">
+                        @Html.DisplayFor(model => model.CreatedDate)
+                    </span>
+                </div>
+            </div>
+            <div class="span6">
+                <span class="display-label">
+                    @Html.DisplayName("Due Date : ")
+                </span>
+                <span class="display-field">
+                    @Html.DisplayFor(model => model.DueDate)
+                </span>
+            </div>
+        </div> 
+    </section>
+
+    @**** Display discussion item comments ****@
+    <section id="discussionsComments">
+        <div class="sub-header">
+            <h2>Comments</h2>
+        </div>
+            <table class="datatable table table-striped full-section table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.LabelFor(model => model.Discussion.First().ActionDateTime, "Date & Time")
+                        </th>
+                        <th>
+                            @Html.LabelFor(model => model.Discussion.First().Comment, "Comment")
+                        </th>
+                        <th>
+                            @Html.LabelFor(model => model.Discussion.First().SysUser_Email, "User")
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (TeamBananaPhase4.Models.Discussion di in Model.Discussion) //list each comment that the DiscItem has.
+                {
+                    if (di.Comment != null)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => di.ActionDateTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => di.Comment)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => di.SysUser_Email)
+                        </td>
+                    </tr>
+                    }
+                }
+                </tbody>
+            </table>
+            <div class="row-fluid">
+                @using (Html.BeginForm("AddComment", "Discussion", new
+                {
+                    primaryKey1 = Model.Meeting_Comm_CommOwn_ID,
+                    primaryKey2 = Model.Meeting_Comm_ID,
+                    primaryKey3 = Model.Meeting_DateTime.ToString("MM-dd-yyyy h.mm.ss t\\M"),
+                    primaryKey4 = Model.Title
+                }, FormMethod.Post))
+                {
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <textarea rows="4" placeholder="Enter a comment..."  name="comment" style="width:100%"></textarea>
+                        </div>
+                    </div>
+                
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <input type="submit" value="Add comment" class="btn btn-primary" />
+                            <div>
+                                @if (TempData["invalidComment"] == "Y")
+                                {
+                                    <br />
+                                    <font size="4" color="red">
+                                        Enter a valid comment
+                                    </font>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+    </section>
+ 
+    @**** Display discussion item votes ****@
+    @if (ViewBag.votable == "Y")
+    {
+        <section id="Votes">
+            <div class="sub-header">
+                <h2>Votes</h2>
+            </div>
+            @if (ViewBag.IsAnonVoting != "Y")
+            {
+                <table class="datatable table table-striped full-section table-hover">
+                    <thead>
+                        <tr>
+                            <th> @Html.LabelFor(model => model.Discussion.First().SysUser_Email, "User") </th>
+                            <th> @Html.LabelFor(model => model.Discussion.First().Vote, "Vote")  </th>
+                            <th> @Html.LabelFor(model => model.Discussion.First().ActionDateTime, "Date & Time") </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (TeamBananaPhase4.Models.Discussion di in Model.Discussion) //list each vote item that the DiscItem has.
+                        {
+                            if (di.Vote != null)
+                            {
+                                <tr>
+                                    <td> @Html.DisplayFor(modelItem => di.SysUser_Email) </td>
+                                    <td> @Html.DisplayFor(modelItem => di.Vote) </td>
+                                    <td> @Html.DisplayFor(modelItem => di.ActionDateTime) </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            }
+            else //display votes anonymously
+            {
+                <br />
+                <div>
+                    <center> The voting is anonymous for this discussion item </center>
+                </div>
+                <table class="table table-striped full-section table-hover">
+                    <thead>
+                        <tr>
+                            <th> Vote </th>
+                            <th> Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (TeamBananaPhase4.Models.VoteType vt in Model.VoteType)
+                        {
+                            <tr>
+                            <td>@vt.Type</td>
+                            <td>@Model.AnonVoting.Count(av => av.Vote == vt.Type)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        
+            <div class="row-fluid">
+            @if (ViewBag.isVotingMember == true)
+            {
+                if (ViewBag.voted == "N" || TempData["voted"] == "N")
+                {
+                    using (Html.BeginForm("AddVote", "Discussion", new
+                    {
+                        primaryKey1 = Model.Meeting_Comm_CommOwn_ID,
+                        primaryKey2 = Model.Meeting_Comm_ID,
+                        primaryKey3 = Model.Meeting_DateTime.ToString("MM-dd-yyyy h.mm.ss t\\M"),
+                        primaryKey4 = Model.Title
+                    }, FormMethod.Post))
+                    {
+                        <div class="span12">
+                            @Html.DropDownList("vote", (IEnumerable<SelectListItem>)ViewData["voteTypes"])
+                            <input type="submit" value="Add vote" class="btn btn-primary" />
+                        </div>
+                    }
+                }
+                else
+                {
+                        <font size="4" color="red">
+                            You have voted on this discussion item
+                        </font>
+                }
+            }
+            else
+            {
+                        <font size="4" color="red">
+                            You are not a voting member of this committee
+                       </font>
+            }
+        </section>
+    }
+    <br />
+    <br />
+    
+    <section id="read">
+        <div class="row-fluid">
+            <div class="span6">
+                @if (Model.IsRead == "Y")
+                {
+                    <p>This discussion item has been read by @Model.Discussion.Count(d => d.HasRead =="Y") member(s).</p>
+                    if (ViewBag.read == "N" || TempData["read"] == "N")
+                    {
+                        using (Html.BeginForm("MarkRead", "Discussion", new
+                        {
+                            primaryKey1 = Model.Meeting_Comm_CommOwn_ID,
+                            primaryKey2 = Model.Meeting_Comm_ID,
+                            primaryKey3 = Model.Meeting_DateTime.ToString("MM-dd-yyyy h.mm.ss t\\M"),
+                            primaryKey4 = Model.Title
+                        }, FormMethod.Post))
+                        {
+                            <input type="submit" value="Mark Discussion Item as Read" class="btn btn-primary"/>
+                        }
+                    }
+                    else
+                    {
+                        <font size="4" color="red">
+                            You have read this discussion item
+                        </font>
+                    }
+                }
+            </div>
+        </div>
+    </section>
+
+ @section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    }

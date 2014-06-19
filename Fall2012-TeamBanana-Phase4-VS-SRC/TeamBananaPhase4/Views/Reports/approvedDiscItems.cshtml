@@ -1,0 +1,63 @@
+﻿@************************************************
+ * Team: Team Banana
+ * Programmers: Justin Ashdown, Eric Grounds, Joel Haubold, Jared Short, Dung Truong
+ * 
+ * File: view\reports\approvedDiscItems.cshtml
+ * Created by: Joel Haubold
+ * Created date: 11-23-12
+ * Primary Programmer: Joel Haubold
+ * File description: Display results of approved discussion items report
+ *
+ * Change Log:
+ * Date programmer change
+ *
+ *
+ *************************************************@
+@using TeamBananaPhase4.Models;
+@model IQueryable<IGrouping<Comm.PrimaryKeyWithName, IGrouping<Meeting.PrimaryKey, DiscItem>>>
+
+@**** Set Title ****@
+@{
+    ViewBag.Title = "Approved Discussion items";
+}
+@using (jashdownEntities db = new jashdownEntities())
+{
+<section id="reportResults">
+<div class="row-fluid">
+    <div class="span12">
+        <ul>
+            @foreach (var group in Model) //committees
+            {
+                <li>@Html.ActionLink(db.Comm.Find(group.Key.CommOwn_ID, group.Key.ID).Name, "Details", "Committees", new { primaryKey1 = group.Key.CommOwn_ID, primaryKey2 = group.Key.ID }, null)
+                <ul>
+                    @foreach (var middle in group)   //meetings
+                    {
+                        <li>@Html.ActionLink(middle.Key.DateTime.ToLongDateString(), "Details", "Meetings", new
+                       {
+                           primaryKey1 = middle.Key.Comm_CommOwn_ID,
+                           primaryKey2 = middle.Key.Comm_ID,
+                           primaryKey3 = middle.Key.DateTime.ToString("MM-dd-yyyy")
+                       }, null)
+                        <ul>
+                        @foreach (var inner in middle)   //discussion items
+                        {
+                            <li>@Html.ActionLink(inner.Title, "Details", "DiscItem", new
+                           {
+                               primaryKey1 = inner.Meeting_Comm_CommOwn_ID,
+                               primaryKey2 = inner.Meeting_Comm_ID,
+                               primaryKey3 = inner.Meeting_DateTime.ToShortDateString(),
+                               primaryKey4 = HttpUtility.UrlPathEncode(inner.Title)
+                           }, null)
+                            </li>
+                        }
+                </ul>
+                </li>
+                    }
+            </ul>
+            </li>
+            }
+        </ul>
+    </div>
+</div>
+</section>
+}

@@ -1,0 +1,79 @@
+﻿@************************************************
+ * Team: Team Banana
+ * Programmers: Justin Ashdown, Eric Grounds, Joel Haubold, Jared Short, Dung Truong
+ * 
+ * File: Views\Meetings\Create.cshtml
+ * Created by: Joel Haubold
+ * Created date: 11-23-12
+ * Primary Programmer: Joel Haubold
+ * File description: Remove
+ *
+ * Change Log:
+ * Date programmer change
+ * 11-27-12 Joel    Made pretty
+ *
+ *************************************************@
+@model TeamBananaPhase4.Models.Meeting
+@**** Set title ****@
+@{ ViewBag.Title = "Create meeting for " + ViewBag.CommitteeName; }
+@**** Display meeting information ****@
+<section id="createMeeting">
+<div class="row-fluid">
+<div class="span12">
+@using (Html.BeginForm())
+{
+    
+    @Html.ValidationSummary(true)
+   
+    @Html.HiddenFor(model => model.Comm_CommOwn_ID)
+    @Html.HiddenFor(model => model.Comm_ID)
+    @Html.HiddenFor(model => model.CreatedBy)
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.DateTime)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(model => model.DateTime, new { @class = "datepicker" })
+        @Html.ValidationMessageFor(model => model.DateTime)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Location)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Location)
+        @Html.ValidationMessageFor(model => model.Location)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.IsListedPublicly)
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.IsListedPublicly, new SelectListItem[] { new SelectListItem { Value = "Y", Text = "Yes" }, new SelectListItem { Value = "N", Text = "No" } }.ToList())
+        @Html.ValidationMessageFor(model => model.IsListedPublicly)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.FinalAgenda)
+    </div>
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.FinalAgenda, new { @class = "input-xxlarge", @rows = "8" })
+        @Html.ValidationMessageFor(model => model.FinalAgenda)
+    </div>
+
+    @**** Create meeting button ****@
+    <p>
+        <input type="submit" value="Create Meeting" class="btn btn-primary" />
+   
+    
+    @**** Back to committee button (cancel create) ****@
+        @Html.ActionLink("Back to committee", "Details", "Committees", new { primaryKey1 = Model.Comm_CommOwn_ID, primaryKey2 = Model.Comm_ID }, new { @class = "btn" })
+    </p>
+}
+
+</div>
+</div>
+</section>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

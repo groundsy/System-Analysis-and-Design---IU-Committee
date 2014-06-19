@@ -1,0 +1,99 @@
+﻿@model TeamBananaPhase4.Models.CommMember
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>CommMember</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Comm.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Comm.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Comm_ID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Comm_ID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SysUser1.FirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SysUser1.FirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsAdministrator)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsAdministrator)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsConvener)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsConvener)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.MemberRole.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MemberRole.Description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Voting_Non_Voting)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Voting_Non_Voting)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CommOwn.ID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CommOwn.ID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StartDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EndDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EndDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SysUser.FirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SysUser.FirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LastAssignedDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastAssignedDate)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

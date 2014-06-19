@@ -1,0 +1,80 @@
+﻿@model TeamBananaPhase4.Models.CommDocument
+@{
+    ViewBag.Title = "Edit Committee Document";
+}
+<section id="createDocument">
+<div class="row-fluid">
+    <div class="span12">
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        @Html.HiddenFor(model => model.Comm_CommOwn_ID)
+        @Html.HiddenFor(model => model.Comm_ID)
+        @Html.HiddenFor(model => model.UploadedBy)
+        @Html.HiddenFor(model => model.UploadedDate)
+        @Html.HiddenFor(model => model.ArchivedBy)
+        @Html.HiddenFor(model => model.ArchivedDate)
+        @Html.HiddenFor(model => model.Filename)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Title)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DisplayDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DisplayDate)
+            @Html.ValidationMessageFor(model => model.DisplayDate)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Tags)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Tags)
+            @Html.ValidationMessageFor(model => model.Tags)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Category)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Category", String.Empty)
+            @Html.ValidationMessageFor(model => model.Category)
+        </div>
+        <div class="control-group">
+                @Html.Label("Make Document Public, Protected or Archived", new { @class = "control-label" })
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.IsPublic, new SelectListItem[] { new SelectListItem { Value = "N", Text = "Protected" },
+                                            new SelectListItem { Value = "Y", Text = "Public" },
+                                            new SelectListItem { Value = "A", Text = "Archive"} }.ToList())
+                <b>@Html.ValidationMessageFor(model => model.IsPublic)</b>
+                <br />Protected Documents are just for Committee Members.
+                <br />Public Documents are for everyone, once public it stays public.
+                <br />Archived Documents can no longer be seen, but is not completely deleted.
+            </div>
+            <br />
+        <div>
+            Upload new file (will replace current file) :
+            <input id="myFile" type="file" name="myFile" runat="server" />
+        </div>
+        <p>
+            <input type="submit" value="Save" class="btn btn-primary" />
+            @Html.ActionLink("Back to Committee", "Details", "Committees", new { primaryKey1 = Model.Comm_CommOwn_ID, primaryKey2 = Model.Comm_ID }, new { @class = "btn" })
+        </p>
+    </fieldset>
+}
+<div>
+     
+</div>
+
+</div>
+</div>
+</section>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

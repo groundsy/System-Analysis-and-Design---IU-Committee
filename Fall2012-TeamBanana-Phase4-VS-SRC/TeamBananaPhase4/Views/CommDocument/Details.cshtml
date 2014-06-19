@@ -1,0 +1,83 @@
+﻿@model TeamBananaPhase4.Models.CommDocument
+
+@{
+    ViewBag.Title = Model.Title + " Document Details";
+}
+
+<section id="detailsDocument">
+<div class="row-fluid">
+    <div class="span12">
+
+@Html.ActionLink("Download", "Download", new { primaryKey1 = Model.Comm_CommOwn_ID, primaryKey2 = Model.Comm_ID, primaryKey3 = Model.Title }, new { @class = "btn btn-primary" } )
+
+
+<fieldset>
+    
+<br />    
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Comm.Name)
+    </div>
+
+    <br />
+
+    <div>Document effective date:</div>
+    <div class="display-field">
+         
+        @Html.Raw((string)ViewBag.documentDate)
+    </div>
+    <br />
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Tags):
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Tags)
+    </div>
+
+    <br />
+
+    
+    <div class="display-label">
+         Document Category:
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Category)
+    </div>
+
+    <br />
+
+    <div class="display-label">
+         Added by:
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SysUser1.FirstName) @Html.DisplayFor(model => model.SysUser1.LastName)
+    </div>
+
+    <br />
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UploadedDate):
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UploadedDate)
+    </div>
+
+</fieldset>
+
+
+<br />
+<p>
+    @Html.ActionLink("Back to Committee", "Details", "Committees", new { primaryKey1 = Model.Comm_CommOwn_ID, primaryKey2 = Model.Comm_ID }, new { @class = "btn" })
+</p>
+
+@if (ViewBag.isCommitteeAdmin)
+{
+    <div>
+    @Html.ActionLink("Edit", "Edit", "CommDocument", new { primaryKey1 = Model.Comm_CommOwn_ID, primaryKey2 = Model.Comm_ID, primaryKey3 = Model.Title }, new { @class = "btn" })
+    @Html.DisplayText("&nsbp;&nsbp;&nsbp;&nsbp;")
+    @Html.ActionLink("Delete", "Delete", "CommDocument", new { primaryKey1 = Model.Comm_CommOwn_ID, primaryKey2 = Model.Comm_ID, primaryKey3 = Model.Title }, new { @class = "btn" })
+    </div>
+}
+
+ </div>
+</div>
+</section>
